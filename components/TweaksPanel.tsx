@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTweaks } from './useTweaks';
+import { useTweaks } from './UseTweaks';
 
 const ACCENT_OPTIONS = ['#0033ff', '#ff3322', '#0a0a0a', '#2e6f5e', '#ff7a1a', '#7c4dff'];
 const DENSITY_OPTIONS = [

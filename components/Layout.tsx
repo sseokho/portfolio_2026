@@ -17,7 +17,6 @@ export default function Layout({ children }: LayoutProps) {
   const [page, setPage]       = useState<Page>('projects');
   const [progress, setProgress] = useState(0);
   const [clock, setClock]     = useState('');
-  const progRef = useRef<HTMLElement>(null);
 
   // 서울 시계
   useEffect(() => {
@@ -85,7 +84,7 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* 프로그레스 바 */}
       <div className="progress" aria-hidden>
-        <i ref={progRef} style={{ width: `${progress * 100}%` }} />
+        <i style={{ width: `${progress * 100}%` }} />
       </div>
 
       {/* 페이지 콘텐츠 */}

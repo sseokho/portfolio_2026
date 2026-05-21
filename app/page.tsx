@@ -1,10 +1,9 @@
-// app/page.tsx
 'use client';
 
-import Layout from '@/app/components/Layout';
-import ProjectsPage from '@/app/components/ProjectsPage';
-import AboutPage from '@/app/components/AboutPage';
-import TweaksPanel from '@/app/components/TweaksPanel';
+import Layout from '@/components/Layout';
+import ProjectsPage from '@/components/ProjectsPage';
+import AboutPage from '@/components/AboutPage';
+import TweaksPanel from '@/components/TweaksPanel';
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 'use client';
 
-import { useReveal } from './useReveal';
-import { PROJECTS, type Project } from './data';
+import { useReveal } from './UseReveal';
+import { PROJECTS, type Project } from './Data';
 import Hero from './Hero';
 
 function IndexRow({ project }: { project: Project }) {
@@ -30,11 +30,11 @@ function IndexRow({ project }: { project: Project }) {
   );
 }
 
-export default function ProjectsPage() {
+export default function ProjectsPage({active} : {active:boolean }) {
   const ref = useReveal();
 
   return (
-    <div id="page-projects" className="page active" ref={ref}>
+    <div id="page-projects" className={`page${active ? ' active' : ''}`} ref={ref}>
 
       <Hero />
 

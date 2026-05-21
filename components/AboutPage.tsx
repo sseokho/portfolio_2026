@@ -1,13 +1,13 @@
 'use client';
 
-import { useReveal } from './useReveal';
-import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './data';
+import { useReveal } from './UseReveal';
+import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
 
-export default function AboutPage() {
+export default function AboutPage({active} : { active: boolean }) {
   const ref = useReveal();
 
   return (
-    <div id="page-about" className="page" ref={ref}>
+    <div id="page-about" className={`page${active ? ' active' : ''}`} ref={ref}>
 
       {/* ─── 스택 매트릭스 ─── */}
       <section className="matrix">

@@ -36,7 +36,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Jiwon Kim — Index v.2',
+  title: 'SEOKHO SON — Index v.2',
   description: '디자인 엔지니어 김지원의 포트폴리오',
 };
 

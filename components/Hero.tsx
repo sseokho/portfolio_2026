@@ -2,10 +2,15 @@
 
 import { useEffect, useRef } from 'react';
 
+const KEYWORDS = ['Semantic', 'Responsive', 'Interactive', 'Optimized'];
+const NAME = 'SONSEOKHO PORTFOLIO';
+const K_SPD = 280;
+const TYPE_START = KEYWORDS.length * K_SPD + 300;
+const TYPE_SPD = 65;
+
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
 
-  // 입장 애니메이션
   useEffect(() => {
     requestAnimationFrame(() => heroRef.current?.classList.add('in'));
   }, []);
@@ -14,20 +19,44 @@ export default function Hero() {
     <section className="hero" id="hero" ref={heroRef}>
       <div className="grid">
 
+        {/* 키워드 + 이름 인트로 */}
+        <div className="hero-intro">
+          <div className="hero-kw">
+            {KEYWORDS.map((kw, i) => (
+              <span
+                key={kw}
+                className="kw"
+                style={{ '--d': `${i * K_SPD + 80}ms` } as React.CSSProperties}
+              >
+                {kw}{i < KEYWORDS.length - 1 && <span className="sep"> · </span>}
+              </span>
+            ))}
+          </div>
+          <div className="hero-name">
+            {[...NAME].map((ch, i) => (
+              <span
+                key={i}
+                className="tc"
+                style={{ '--d': `${TYPE_START + i * TYPE_SPD}ms` } as React.CSSProperties}
+              >
+                {ch}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* 좌상단 스탬프 */}
         <div className="id">
-          <span className="stamp">
-            디자인<br />엔지니어
-          </span>
+          <span className="stamp">프론트엔드</span>
           <p className="v">IDX V.2.6 · 2026</p>
         </div>
 
         {/* 타이틀 */}
         <div className="head">
           <h1>
-            <span className="line"><span>인터페이스를</span></span>
-            <span className="line"><span>정밀하게<span className="accent"> 조각</span></span></span>
-            <span className="line"><span>합니다.<span className="small">since 2021</span></span></span>
+            <span className="line"><span>사용자의</span></span>
+            <span className="line"><span>첫<span className="accent"> 0.3초</span>를</span></span>
+            <span className="line"><span>설계합니다.<span className="small">since 2021</span></span></span>
           </h1>
         </div>
 
@@ -51,19 +80,15 @@ export default function Hero() {
           </dl>
         </div>
 
-        {/* 포트레이트 (이미지 교체 가능) */}
         <div className="portrait">
           <span className="lbl">PORTRAIT</span>
-          {/* <img src="/portrait.jpg" alt="김지원" /> */}
         </div>
 
-        {/* 리드 문구 */}
         <p className="lead">
           디자이너와 가장 가까이 앉는 엔지니어. <em>인터페이스의 무게</em>와 모션의 결,
           그리고 화면이 사용자에게 처음 닿는 0.3초를 가장 오래 들여다봅니다.
         </p>
 
-        {/* 스크롤 힌트 */}
         <div className="scroll">
           <span className="ln" />
           스크롤
@@ -71,8 +96,15 @@ export default function Hero() {
 
       </div>
 
-      {/* 워터마크 */}
-      <span className="wm" aria-hidden>JIWON KIM · DESIGN ENGINEER</span>
+      <div className="wm-track" aria-hidden>
+        {[0, 1].map(i => (
+          <span key={i} className="wm">
+            {Array.from({ length: 6 }).map((_, j) => (
+              <span key={j}>SEOKHO SON · FRONTEND DEVELOPER · </span>
+            ))}
+          </span>
+        ))}
+      </div>
     </section>
   );
 }

@@ -1,14 +1,12 @@
 import Layout from '@/components/Layout';
-import Hero from '@/components/Hero';
-import Overview from '@/components/Overview';
+import AboutPage from '@/components/AboutPage';
 import TweaksPanel from '@/components/TweaksPanel';
 
-export default function Home() {
+export default function About() {
   return (
     <>
       <Layout>
-        <Hero />
-        <Overview />
+        <AboutPage />
       </Layout>
       <TweaksPanel />
     </>

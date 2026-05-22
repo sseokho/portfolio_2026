@@ -3,11 +3,11 @@
 import { useReveal } from './UseReveal';
 import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
 
-export default function AboutPage({active} : { active: boolean }) {
+export default function AboutPage() {
   const ref = useReveal();
 
   return (
-    <div id="page-about" className={`page${active ? ' active' : ''}`} ref={ref}>
+    <div id="page-about" className="page active" ref={ref}>
 
       {/* ─── 스택 매트릭스 ─── */}
       <section className="matrix">
@@ -89,8 +89,8 @@ export default function AboutPage({active} : { active: boolean }) {
           </div>
 
           <div className="email-big reveal">
-            <a href="mailto:hello@jiwon.kr">
-              hello@jiwon.kr <span className="c">↗</span>
+            <a href="mailto:tjrgh538@naver.com">
+              tjrgh538@naver.com <span className="c">↗</span>
             </a>
             <span className="note">
               평일 기준<br />24시간 이내로 답변드립니다.

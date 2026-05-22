@@ -6,8 +6,9 @@ export interface Project {
   client: string;
   role: string;
   year: string;
+  type: 'work' | 'personal';
   href?: string;
-  thumb?: string; // 이미지 경로
+  thumb?: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -18,6 +19,7 @@ export const PROJECTS: Project[] = [
     client: 'Layered Inc.',
     role: '디자인 엔지니어',
     year: '2025',
+    type: 'work',
     href: '#',
   },
   {
@@ -27,6 +29,7 @@ export const PROJECTS: Project[] = [
     client: 'House Margiela JP',
     role: '크리에이티브 테크',
     year: '2024',
+    type: 'work',
     href: '#',
   },
   {
@@ -36,6 +39,7 @@ export const PROJECTS: Project[] = [
     client: 'Toss Place',
     role: '시스템 엔지니어',
     year: '2024',
+    type: 'work',
     href: '#',
   },
   {
@@ -45,42 +49,47 @@ export const PROJECTS: Project[] = [
     client: 'Samsung · MWC',
     role: '프론트엔드',
     year: '2024',
+    type: 'work',
     href: '#',
   },
   {
     id: 'nara',
-    num: '05',
+    num: '03',
     title: 'Studio Nara — 에이전시 사이트',
     client: 'Studio Nara',
     role: '프론트엔드',
     year: '2023',
+    type: 'personal',
     href: '#',
   },
   {
     id: 'atelier',
-    num: '06',
+    num: '04',
     title: 'Atelier 222 — 이커머스',
     client: 'Atelier 222',
     role: '프론트엔드',
     year: '2022',
+    type: 'personal',
     href: '#',
   },
   {
     id: 'subtle',
-    num: '07',
+    num: '05',
     title: 'Subtle — 메모 앱',
     client: '사이드 프로젝트',
     role: '개인',
     year: '2022',
+    type: 'personal',
     href: '#',
   },
   {
     id: 'loop',
-    num: '08',
+    num: '06',
     title: 'Loop — 음악 탐험가',
     client: '사이드 프로젝트',
     role: '개인',
     year: '2022',
+    type: 'personal',
     href: '#',
   },
 ];

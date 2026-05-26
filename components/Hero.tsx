@@ -15,6 +15,18 @@ export default function Hero() {
     requestAnimationFrame(() => heroRef.current?.classList.add('in'));
   }, []);
 
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
+      el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
+    };
+    el.addEventListener('mousemove', onMove);
+    return () => el.removeEventListener('mousemove', onMove);
+  }, []);
+
   return (
     <section className="hero" id="hero" ref={heroRef}>
       <div className="grid">
@@ -54,9 +66,15 @@ export default function Hero() {
         {/* 타이틀 */}
         <div className="head">
           <h1>
-            <span className="line"><span>사용자의</span></span>
-            <span className="line"><span>첫<span className="accent"> 0.3초</span>를</span></span>
-            <span className="line"><span>설계합니다.<span className="small">since 2021</span></span></span>
+            <span className="line">
+              <span className="h1-strong">
+                SONSEOKHO
+                <svg className="h1-underline" viewBox="0 0 520 14" preserveAspectRatio="none" aria-hidden>
+                  <path d="M 3,10 Q 70,2 140,9 Q 210,16 280,7 Q 360,1 440,9 Q 480,13 517,8" />
+                </svg>
+              </span>
+            </span>
+            <span className="line"><span className="h1-outline">PORTFOLIO</span></span>
           </h1>
         </div>
 
@@ -64,18 +82,20 @@ export default function Hero() {
         <div className="meta-right">
           <dl>
             <div>
-              <dt>현재 위치</dt>
+              <dt>위치</dt>
               <dd>서울, 대한민국</dd>
             </div>
             <div>
-              <dt>소속</dt>
-              <dd>Layered Inc.</dd>
+              <dt>경력</dt>
+              <dd>4년차 프론트엔드</dd>
             </div>
             <div>
               <dt>상태</dt>
-              <dd>
-                <span className="avail">프리랜스 가능</span>
-              </dd>
+              <dd><span className="avail">프리랜스 가능</span></dd>
+            </div>
+            <div>
+              <dt>이메일</dt>
+              <dd>tjrgh538@naver.com</dd>
             </div>
           </dl>
         </div>

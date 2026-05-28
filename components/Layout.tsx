@@ -37,6 +37,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <div className="noise" aria-hidden />
       <header className="ruler-top">
         <nav className="nav">
           {NAV_ITEMS.map(({ href, label }) => (

@@ -9,6 +9,23 @@ export default function AboutPage() {
   return (
     <div id="page-about" className="page active" ref={ref}>
 
+      {/* ─── 소개 ─── */}
+      <section className="about">
+        <div className="grid">
+          <div className="about-portrait reveal">
+            <img src="/my.jpg" alt="손석호" />
+          </div>
+          <span className="stamp">§ 02 — 소개</span>
+          <p className="reveal">
+            디자이너와 가장 가까이 앉는 엔지니어입니다.{' '}
+            <b>인터페이스의 무게</b>, 모션의 결, 그리고 화면이 사용자에게 처음 닿는
+            0.3초를 가장 오래 들여다봅니다. 빠르게 만드는 것보다{' '}
+            <b>한 번 더 다듬는 것</b>을 언제나 선택합니다.
+          </p>
+          <span className="signed">— 지원, 2026</span>
+        </div>
+      </section>
+
       {/* ─── 스택 매트릭스 ─── */}
       <section className="matrix">
         <div className="grid">
@@ -54,20 +71,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ─── 소개 ─── */}
-      <section className="about">
-        <div className="grid">
-          <span className="stamp">§ 02 — 소개</span>
-          <p className="reveal">
-            디자이너와 가장 가까이 앉는 엔지니어입니다.{' '}
-            <b>인터페이스의 무게</b>, 모션의 결, 그리고 화면이 사용자에게 처음 닿는
-            0.3초를 가장 오래 들여다봅니다. 빠르게 만드는 것보다{' '}
-            <b>한 번 더 다듬는 것</b>을 언제나 선택합니다.
-          </p>
-          <span className="signed">— 지원, 2026</span>
         </div>
       </section>
 

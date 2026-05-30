@@ -1,41 +1,41 @@
 'use client';
 
-import { useReveal } from './UseReveal';
 import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
 
 export default function AboutPage() {
-  const ref = useReveal();
-
   return (
-    <div id="page-about" className="page active" ref={ref}>
+    <div id="page-about" className="page active">
 
       {/* ─── 소개 ─── */}
       <section className="about">
         <div className="grid">
-          <div className="about-portrait reveal">
-            <img src="/my.jpg" alt="손석호" />
+          <div className="about-text">
+            <span className="stamp">§ 02 — 소개</span>
+            <p>
+              디자이너와 가장 가까이 앉는 엔지니어입니다.{' '}
+              <b>인터페이스의 무게</b>, 모션의 결, 그리고 화면이 사용자에게 처음 닿는
+              0.3초를 가장 오래 들여다봅니다. 빠르게 만드는 것보다{' '}
+              <b>한 번 더 다듬는 것</b>을 언제나 선택합니다.
+            </p>
+            <span className="signed">— 지원, 2026</span>
           </div>
-          <span className="stamp">§ 02 — 소개</span>
-          <p className="reveal">
-            디자이너와 가장 가까이 앉는 엔지니어입니다.{' '}
-            <b>인터페이스의 무게</b>, 모션의 결, 그리고 화면이 사용자에게 처음 닿는
-            0.3초를 가장 오래 들여다봅니다. 빠르게 만드는 것보다{' '}
-            <b>한 번 더 다듬는 것</b>을 언제나 선택합니다.
-          </p>
-          <span className="signed">— 지원, 2026</span>
+          <div className="about-portrait">
+            <img src="/my.jpg" alt="손석호" />
+            <span className="portrait-lbl">PORTRAIT</span>
+          </div>
         </div>
       </section>
 
       {/* ─── 스택 매트릭스 ─── */}
       <section className="matrix">
         <div className="grid">
-          <h2 className="reveal">
+          <h2>
             스택 현황,<br />이번 <span className="it">분기.</span>
           </h2>
-          <p className="lede reveal">
+          <p className="lede">
             매 분기 손에 쥐고 있는 것들. 색이 채워진 도구는 가장 최근에 가장 자주 만진 것들입니다.
           </p>
-          <div className="gridbox reveal">
+          <div className="gridbox">
             {SKILLS.map(skill => (
               <div className="cell" key={`${skill.label}-${skill.name}`}>
                 <span className="lbl">{skill.label}</span>
@@ -55,12 +55,12 @@ export default function AboutPage() {
       {/* ─── 경력 ─── */}
       <section className="exp">
         <div className="grid">
-          <h2 className="reveal">
+          <h2>
             경력,<br /><span className="it">요약.</span>
           </h2>
           <div className="list">
             {EXPERIENCE.map((item, i) => (
-              <div className="item reveal" key={i}>
+              <div className="item" key={i}>
                 <span className="yr">{item.period}</span>
                 <div className="role">
                   {item.role}
@@ -78,12 +78,12 @@ export default function AboutPage() {
       <section className="contact" id="contact">
         <div className="grid">
           <span className="label">§ 02 — 연락처</span>
-          <h2 className="reveal">
+          <h2>
             함께<br />만들어봐요,{' '}
             <span className="blue">정밀하게.</span>
           </h2>
 
-          <div className="right reveal">
+          <div className="right">
             {CONTACT_LINKS.map(link => (
               <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
                 {link.label} <span>↗</span>
@@ -91,7 +91,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="email-big reveal">
+          <div className="email-big">
             <a href="mailto:tjrgh538@naver.com">
               tjrgh538@naver.com <span className="c">↗</span>
             </a>

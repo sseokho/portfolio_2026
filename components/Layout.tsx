@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const NAV_ITEMS = [
-  { href: '/',         label: '홈'       },
-  { href: '/projects', label: '프로젝트' },
-  { href: '/about',    label: '어바웃'   },
+  { href: '/',         label: 'HOME'     },
+  { href: '/projects', label: 'PROJECTS' },
+  { href: '/about',    label: 'ABOUT'    },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {

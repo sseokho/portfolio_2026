@@ -100,19 +100,10 @@ export default function Hero() {
           </dl>
         </div>
 
-        <div className="portrait">
-          <span className="lbl">PORTRAIT</span>
-        </div>
-
         <p className="lead">
           디자이너와 가장 가까이 앉는 엔지니어. <em>인터페이스의 무게</em>와 모션의 결,
           그리고 화면이 사용자에게 처음 닿는 0.3초를 가장 오래 들여다봅니다.
         </p>
-
-        <div className="scroll">
-          <span className="ln" />
-          스크롤
-        </div>
 
       </div>
 

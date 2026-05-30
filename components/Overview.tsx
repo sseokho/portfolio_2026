@@ -7,14 +7,14 @@ const ITEMS = [
   {
     num: '01',
     href: '/projects',
-    title: 'Projects',
+    title: 'PROJECTS',
     desc: '클라이언트 의뢰부터 개인 실험까지, 인터페이스의 질감과 모션의 결을 다듬어온 작업들. Work와 Personal로 나뉩니다.',
     label: '8 Projects',
   },
   {
     num: '02',
     href: '/about',
-    title: 'About',
+    title: 'ABOUT',
     desc: '사용하는 스택, 걸어온 경력, 그리고 연락처. 빠르게 만드는 것보다 한 번 더 다듬는 것을 선택하는 엔지니어입니다.',
     label: 'Profile',
   },

@@ -1,6 +1,6 @@
 'use client';
 
-import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
+import { SKILLS, EXPERIENCE, CERTIFICATIONS, CONTACT_LINKS } from './Data';
 
 export default function AboutPage() {
   return (
@@ -30,6 +30,7 @@ export default function AboutPage() {
       <section className="matrix">
         <div className="grid">
           <h2>
+            <span className="en-tag">STACK MATRIX</span>
             스택 현황,<br />이번 <span className="it">분기.</span>
           </h2>
           <p className="lede">
@@ -52,10 +53,30 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ─── 자격증 ─── */}
+      <section className="cert">
+        <div className="grid">
+          <h2>
+            <span className="en-tag">CREDENTIALS</span>
+            자격증,<br /><span className="it">취득.</span>
+          </h2>
+          <div className="list">
+            {CERTIFICATIONS.map((item, i) => (
+              <div className="item" key={i}>
+                <span className="yr">{item.date}</span>
+                <span className="role">{item.name}</span>
+                <span className="place">{item.issuer}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── 경력 ─── */}
       <section className="exp">
         <div className="grid">
           <h2>
+            <span className="en-tag">CAREER HISTORY</span>
             경력,<br /><span className="it">요약.</span>
           </h2>
           <div className="list">

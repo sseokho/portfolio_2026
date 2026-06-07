@@ -27,14 +27,18 @@ export default function Overview() {
     <section className="overview" ref={ref}>
       <div className="grid">
         <span className="ov-label reveal">Overview</span>
+        <p className="ov-lead reveal">
+          <span className="ov-lead-tag">Projects</span>{ITEMS[0].desc}
+          {' '}
+          <span className="ov-lead-tag">About</span>{ITEMS[1].desc}
+        </p>
       </div>
 
-      {ITEMS.map(({ num, href, title, desc, label }) => (
-        <Link key={href} href={href} className="ov-row reveal">
+      {ITEMS.map(({ num, href, title, label }) => (
+        <Link key={href} href={href} className="ov-row">
           <div className="grid">
             <span className="ov-num">{num}</span>
             <h2 className="ov-title">{title}</h2>
-            <p className="ov-desc">{desc}</p>
             <div className="ov-meta">
               <span>{label}</span>
               <span className="ov-arr">↗</span>

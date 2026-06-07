@@ -76,35 +76,56 @@ export default function Hero() {
             </span>
             <span className="line"><span className="h1-outline">PORTFOLIO</span></span>
           </h1>
+          <p className="lead">
+            디자이너와 가장 가까이 앉는 엔지니어. <em>인터페이스의 무게</em>와 모션의 결,
+            그리고 화면이 사용자에게 처음 닿는 0.3초를 가장 오래 들여다봅니다.
+          </p>
         </div>
 
-        {/* 우측 메타 */}
-        <div className="meta-right">
-          <dl>
-            <div>
-              <dt>위치</dt>
-              <dd>서울, 대한민국</dd>
+        {/* 하단: stats + meta 통합 */}
+        <div className="hero-bottom">
+          <div className="hb-stats">
+            <div className="hb-stat">
+              <span className="hb-n">04</span>
+              <span className="hb-l">Years Exp.</span>
             </div>
-            <div>
-              <dt>경력</dt>
-              <dd>4년차 프론트엔드</dd>
+            <div className="hb-stat">
+              <span className="hb-n">20+</span>
+              <span className="hb-l">Projects</span>
             </div>
-            <div>
-              <dt>상태</dt>
-              <dd><span className="avail">프리랜스 가능</span></dd>
+            <div className="hb-stat">
+              <span className="hb-n">2020</span>
+              <span className="hb-l">Since</span>
             </div>
-            <div>
-              <dt>이메일</dt>
-              <dd>tjrgh538@naver.com</dd>
-            </div>
+          </div>
+          <dl className="hb-meta">
+            <div><dt>위치</dt><dd>서울, 대한민국</dd></div>
+            <div><dt>경력</dt><dd>4년차 프론트엔드</dd></div>
+            <div><dt>상태</dt><dd><span className="avail">프리랜스 가능</span></dd></div>
+            <div><dt>이메일</dt><dd>tjrgh538@naver.com</dd></div>
           </dl>
         </div>
 
-        <p className="lead">
-          디자이너와 가장 가까이 앉는 엔지니어. <em>인터페이스의 무게</em>와 모션의 결,
-          그리고 화면이 사용자에게 처음 닿는 0.3초를 가장 오래 들여다봅니다.
-        </p>
+      </div>
 
+      {/* 스티커 */}
+      <div className="sticker sticker-circle" aria-hidden>
+        <svg viewBox="0 0 120 120" width="120" height="120">
+          <defs>
+            <path id="cp" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>
+          </defs>
+          <g className="sticker-ring">
+            <text fontFamily="'JetBrains Mono',monospace" fontSize="10.5" letterSpacing="2.8" fill="currentColor" textAnchor="start">
+              <textPath href="#cp">FRONTEND · DEVELOPER · 2026 · </textPath>
+            </text>
+          </g>
+          <text x="60" y="67" textAnchor="middle" fontSize="22" fill="currentColor">✦</text>
+        </svg>
+      </div>
+
+      <div className="sticker sticker-badge" aria-hidden>
+        <span className="sticker-dot"/>
+        OPEN TO WORK
       </div>
 
       <div className="wm-track" aria-hidden>

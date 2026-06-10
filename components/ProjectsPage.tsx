@@ -11,26 +11,25 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'work',     label: 'Work'     },
 ];
 
-function IndexRow({ project }: { project: Project }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <a
-      className="index-row reveal"
+      className="proj-card reveal"
       href={project.href ?? '#'}
-      role="row"
+      style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <span className="n">{project.num}</span>
-      <span className="title">{project.title}</span>
-      <span className="client">{project.client}</span>
-      <span className="role">{project.role}</span>
-      <span className="yr">{project.year}</span>
-      <span className="arr">↗</span>
-
-      <div className="hover-img">
-        <span className="cap">{project.num} — {project.client}</span>
+      <div className="thumb">
         {project.thumb
           ? <img src={project.thumb} alt={project.title} />
-          : <div style={{ width: '100%', height: '100%', background: 'var(--paper)' }} />
+          : <span className="thumb-num">{project.num}</span>
         }
+        <span className="arr">↗</span>
+      </div>
+      <div className="info">
+        <span className="n">{project.num}</span>
+        <h3 className="title">{project.title}</h3>
+        <p className="desc">{project.desc}</p>
+        <span className="meta">{project.client} · {project.role}</span>
       </div>
     </a>
   );
@@ -71,10 +70,10 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      {/* 인덱스 테이블 */}
-      <section className="index-table" role="table" aria-label="프로젝트 목록">
-        {filtered.map(project => (
-          <IndexRow key={project.id} project={project} />
+      {/* 카드 그리드 */}
+      <section className="proj-grid">
+        {filtered.map((project, i) => (
+          <ProjectCard key={project.id} project={project} index={i} />
         ))}
       </section>
 

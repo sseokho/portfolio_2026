@@ -1,8 +1,76 @@
 'use client';
 
-import { SKILLS, EXPERIENCE, CERTIFICATIONS, CONTACT_LINKS } from './Data';
+import { useEffect, useRef, useState } from 'react';
+import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
+
+const STUTTER_DELAYS = [0,1,2,3,4,5,6,7,8,9,10,11].map(i =>
+  i * 70 + (i % 3 === 0 ? 120 : i % 2 === 0 ? 60 : 0)
+);
+
+function Stutter({ text, active, base = 0 }: { text: string; active: boolean; base?: number }) {
+  return (
+    <>
+      {[...text].map((ch, i) => (
+        <span
+          key={i}
+          className="st"
+          style={active ? { '--d': `${base + (STUTTER_DELAYS[i] ?? i * 70)}ms` } as React.CSSProperties : {}}
+          data-active={active ? '1' : '0'}
+        >
+          {ch}
+        </span>
+      ))}
+    </>
+  );
+}
 
 export default function AboutPage() {
+  const portraitRef   = useRef<HTMLDivElement>(null);
+  const gridboxRef    = useRef<HTMLDivElement>(null);
+  const matrixTitleRef = useRef<HTMLHeadingElement>(null);
+  const expTitleRef    = useRef<HTMLHeadingElement>(null);
+  const [barsVisible,   setBarsVisible]   = useState(false);
+  const [matrixIn,      setMatrixIn]      = useState(false);
+  const [expIn,         setExpIn]         = useState(false);
+
+  useEffect(() => {
+    const el = portraitRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add('visible'); obs.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = gridboxRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setBarsVisible(true); obs.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const pairs: [React.RefObject<HTMLDivElement | null>, (v: boolean) => void][] = [
+      [matrixTitleRef, setMatrixIn],
+      [expTitleRef,    setExpIn],
+    ];
+    const observers = pairs.map(([ref, set]) => {
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) { set(true); obs.disconnect(); } },
+        { threshold: 0.5 }
+      );
+      if (ref.current) obs.observe(ref.current);
+      return obs;
+    });
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
   return (
     <div id="page-about" className="page active">
 
@@ -19,9 +87,16 @@ export default function AboutPage() {
             </p>
             <span className="signed">— 지원, 2026</span>
           </div>
-          <div className="about-portrait">
+          <div className="about-portrait" ref={portraitRef}>
+            <span className="p-corner tl" aria-hidden />
+            <span className="p-corner tr" aria-hidden />
+            <span className="p-corner bl" aria-hidden />
+            <span className="p-corner br" aria-hidden />
             <img src="/my.jpg" alt="손석호" />
-            <span className="portrait-lbl">PORTRAIT</span>
+            <div className="portrait-meta">
+              <span className="portrait-lbl">PORTRAIT</span>
+              <span className="portrait-idx">001</span>
+            </div>
           </div>
         </div>
       </section>
@@ -29,43 +104,28 @@ export default function AboutPage() {
       {/* ─── 스택 매트릭스 ─── */}
       <section className="matrix">
         <div className="grid">
-          <h2>
+          <h2 ref={matrixTitleRef}>
             <span className="en-tag">STACK MATRIX</span>
-            스택 현황,<br />이번 <span className="it">분기.</span>
+            <Stutter text="기술" active={matrixIn} base={0} /><br />
+            <span className="it"><Stutter text="스택." active={matrixIn} base={320} /></span>
           </h2>
           <p className="lede">
             매 분기 손에 쥐고 있는 것들. 색이 채워진 도구는 가장 최근에 가장 자주 만진 것들입니다.
           </p>
-          <div className="gridbox">
-            {SKILLS.map(skill => (
+          <div className="gridbox" ref={gridboxRef}>
+            {SKILLS.map((skill, i) => (
               <div className="cell" key={`${skill.label}-${skill.name}`}>
                 <span className="lbl">{skill.label}</span>
                 <span className="val">{skill.name}</span>
                 <div className="bar">
                   <i
                     className={skill.highlight ? 'h' : ''}
-                    style={{ width: `${skill.level}%` }}
+                    style={{
+                      width: barsVisible ? `${skill.level}%` : '0',
+                      transitionDelay: barsVisible ? `${i * 60}ms` : '0ms',
+                    }}
                   />
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 자격증 ─── */}
-      <section className="cert">
-        <div className="grid">
-          <h2>
-            <span className="en-tag">CREDENTIALS</span>
-            자격증,<br /><span className="it">취득.</span>
-          </h2>
-          <div className="list">
-            {CERTIFICATIONS.map((item, i) => (
-              <div className="item" key={i}>
-                <span className="yr">{item.date}</span>
-                <span className="role">{item.name}</span>
-                <span className="place">{item.issuer}</span>
               </div>
             ))}
           </div>
@@ -75,9 +135,10 @@ export default function AboutPage() {
       {/* ─── 경력 ─── */}
       <section className="exp">
         <div className="grid">
-          <h2>
+          <h2 ref={expTitleRef}>
             <span className="en-tag">CAREER HISTORY</span>
-            경력,<br /><span className="it">요약.</span>
+            <Stutter text="경력," active={expIn} base={0} /><br />
+            <span className="it"><Stutter text="요약." active={expIn} base={320} /></span>
           </h2>
           <div className="list">
             {EXPERIENCE.map((item, i) => (
@@ -100,8 +161,7 @@ export default function AboutPage() {
         <div className="grid">
           <span className="label">§ 02 — 연락처</span>
           <h2>
-            함께<br />만들어봐요,{' '}
-            <span className="blue">정밀하게.</span>
+            CONTACT<br /><span className="blue">ME.</span>
           </h2>
 
           <div className="right">

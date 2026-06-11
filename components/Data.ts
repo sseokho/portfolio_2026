@@ -101,26 +101,26 @@ export const PROJECTS: Project[] = [
 ];
 
 // ─── 스택 매트릭스 ───
-export interface SkillCell {
-  label: string;
-  name: string;
-  level: number; // 0~100
-  highlight?: boolean;
-}
+export type SkillRow =
+  | { type: 'sep'; label: string }
+  | { type: 'cell'; label: string; name: string; level: number; highlight?: boolean };
 
-export const SKILLS: SkillCell[] = [
-  { label: 'Lang',   name: 'TypeScript',  level: 96, highlight: true },
-  { label: 'Lang',   name: 'GLSL',        level: 40 },
-  { label: 'Lang',   name: 'Python',      level: 30 },
-  { label: 'Lang',   name: 'Swift',       level: 25 },
-  { label: 'Fwk',    name: 'Next.js',     level: 92, highlight: true },
-  { label: 'Fwk',    name: 'Remix',       level: 55 },
-  { label: 'Fwk',    name: 'Svelte',      level: 60 },
-  { label: 'Fwk',    name: 'RN · Expo',   level: 50 },
-  { label: 'Motion', name: 'GSAP',        level: 88, highlight: true },
-  { label: 'Motion', name: 'Framer',      level: 80, highlight: true },
-  { label: '3D',     name: 'Three / R3F', level: 62 },
-  { label: 'Tool',   name: 'Figma',       level: 98, highlight: true },
+export const SKILLS: SkillRow[] = [
+  { type: 'sep',  label: 'Front-end' },
+  { type: 'cell', label: 'Lang',  name: 'JavaScript',        level: 90, highlight: true },
+  { type: 'cell', label: 'Lang',  name: 'TypeScript',        level: 85, highlight: true },
+  { type: 'cell', label: 'Fwk',   name: 'React',             level: 88, highlight: true },
+  { type: 'cell', label: 'Fwk',   name: 'Next.js',           level: 85, highlight: true },
+  { type: 'sep',  label: 'UI & State' },
+  { type: 'cell', label: 'Style', name: 'Tailwind CSS',      level: 72, highlight: true },
+  { type: 'cell', label: 'Style', name: 'Styled-components', level: 53 },
+  { type: 'cell', label: 'State', name: 'Zustand',           level: 75, highlight: true },
+  { type: 'cell', label: 'Tool',  name: 'Figma',             level: 82, highlight: true },
+  { type: 'sep',  label: 'Backend & Infra' },
+  { type: 'cell', label: 'BaaS',  name: 'Firebase',          level: 68 },
+  { type: 'cell', label: 'BaaS',  name: 'Supabase',          level: 65 },
+  { type: 'cell', label: 'Infra', name: 'Vercel',            level: 80 },
+  { type: 'cell', label: 'Tool',  name: 'GitHub',            level: 85, highlight: true },
 ];
 
 // ─── 경력 ───
@@ -134,34 +134,16 @@ export interface ExpItem {
 
 export const EXPERIENCE: ExpItem[] = [
   {
-    period: '2025 — 현재',
-    role: '디자인 엔지니어',
-    company: 'Layered Inc. · 협업 캔버스 SaaS',
-    location: '서울 · 한국',
+    period: '2022.05 — 현재',
+    role: '퍼블리셔팀 주임',
+    company: '워드앤코드',
+    location: '서울',
   },
   {
-    period: '2024',
-    role: '리드 프론트엔드',
-    company: 'House Margiela JP · 시즌 룩북 사이트',
-    location: '도쿄 · 일본',
-  },
-  {
-    period: '2023 — 2024',
-    role: '디자인 시스템 엔지니어',
-    company: 'Toss Place · 사내 50개 이상 제품 시스템',
-    location: '서울 · 한국',
-  },
-  {
-    period: '2022 — 2023',
-    role: '프론트엔드 엔지니어',
-    company: 'Studio Nara · 디자인 스튜디오',
-    location: '서울 · 한국',
-  },
-  {
-    period: '2021',
-    role: '프론트엔드 인턴',
-    company: 'Mash-Up Studio · 인턴십',
-    location: '서울 · 한국',
+    period: '2021.05 — 2021.12',
+    role: '디자인팀 사원',
+    company: '에듀라인',
+    location: '서울',
   },
 ];
 

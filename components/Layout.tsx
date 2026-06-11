@@ -2,18 +2,22 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const NAV_ITEMS = [
-  { href: '/',         label: 'HOME'     },
-  { href: '/projects', label: 'PROJECTS' },
-  { href: '/about',    label: 'ABOUT'    },
+const NAV = [
+  { href: '/',         label: 'HOME',     title: 'INDEX'    },
+  { href: '/projects', label: 'PROJECTS', title: 'PROJECTS' },
+  { href: '/about',    label: 'ABOUT',    title: 'ABOUT'    },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [clock, setClock]       = useState('');
   const [progress, setProgress] = useState(0);
+  const [open, setOpen]         = useState(false);
+  const [trans, setTrans]       = useState<'idle' | 'in' | 'out'>('idle');
+  const [transTitle, setTransTitle] = useState('');
+  const isFirst = useRef(true);
 
   useEffect(() => {
     const tick = () => {
@@ -35,33 +39,56 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+    if (isFirst.current) { isFirst.current = false; return; }
+    const title = NAV.find(n => n.href === pathname)?.title ?? '';
+    setTransTitle(title);
+    setTrans('in');
+    const t1 = setTimeout(() => setTrans('out'), 350);
+    const t2 = setTimeout(() => setTrans('idle'), 520);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [pathname]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
   return (
     <>
       <div className="noise" aria-hidden />
-      <header className="ruler-top">
-        <nav className="nav">
-          {NAV_ITEMS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={pathname === href ? 'on' : ''}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
 
-        <span className="center">SEOKHO SON</span>
+      <header className="ruler-top">
+        <button className={`ham${open ? ' open' : ''}`} onClick={() => setOpen(o => !o)} aria-label="메뉴">
+          <span /><span /><span />
+        </button>
+
+        <span className="center">{NAV.find(n => n.href === pathname)?.title ?? 'SEOKHO SON'}</span>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <span>{clock}</span>
           <div className="dots">
-            {NAV_ITEMS.map(({ href }, i) => (
-              <i key={href} className={i <= NAV_ITEMS.findIndex(n => n.href === pathname) ? 'on' : ''} />
+            {NAV.map(({ href }, i) => (
+              <i key={href} className={i <= NAV.findIndex(n => n.href === pathname) ? 'on' : ''} />
             ))}
           </div>
         </div>
       </header>
+
+      <div className={`drawer${open ? ' open' : ''}`}>
+        <nav>
+          {NAV.map(({ href, label }, i) => (
+            <Link key={href} href={href} className={pathname === href ? 'on' : ''} onClick={() => setOpen(false)}>
+              <span className="n">0{i + 1}</span>
+              {label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      {open && <div className="overlay" onClick={() => setOpen(false)} />}
 
       <div className="rails" aria-hidden>
         {Array.from({ length: 12 }).map((_, i) => <div key={i} className="col" />)}
@@ -71,9 +98,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <i style={{ width: `${progress * 100}%` }} />
       </div>
 
-      <main>
-        {children}
-      </main>
+      {trans !== 'idle' && (
+        <div className={`page-trans ${trans}`} aria-hidden>
+          <span>{transTitle}</span>
+        </div>
+      )}
+
+      <main>{children}</main>
 
       <footer className="ruler-bot">
         <span>© 2026 SONSEOKHO PORTFOLIO</span>

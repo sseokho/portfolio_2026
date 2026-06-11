@@ -3,46 +3,22 @@
 import { useEffect, useRef, useState } from 'react';
 import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
 
-const STUTTER_DELAYS = [0,1,2,3,4,5,6,7,8,9,10,11].map(i =>
-  i * 70 + (i % 3 === 0 ? 120 : i % 2 === 0 ? 60 : 0)
-);
-
-function Stutter({ text, active, base = 0 }: { text: string; active: boolean; base?: number }) {
-  return (
-    <>
-      {[...text].map((ch, i) => (
-        <span
-          key={i}
-          className="st"
-          style={active ? { '--d': `${base + (STUTTER_DELAYS[i] ?? i * 70)}ms` } as React.CSSProperties : {}}
-          data-active={active ? '1' : '0'}
-        >
-          {ch}
-        </span>
-      ))}
-    </>
-  );
+function Reveal({ text, active }: { text: string; active: boolean }) {
+  return <span className={`rl${active ? ' on' : ''}`}>{text}</span>;
 }
 
 export default function AboutPage() {
-  const portraitRef   = useRef<HTMLDivElement>(null);
   const gridboxRef    = useRef<HTMLDivElement>(null);
-  const matrixTitleRef = useRef<HTMLHeadingElement>(null);
-  const expTitleRef    = useRef<HTMLHeadingElement>(null);
-  const [barsVisible,   setBarsVisible]   = useState(false);
-  const [matrixIn,      setMatrixIn]      = useState(false);
-  const [expIn,         setExpIn]         = useState(false);
+  const introTitleRef   = useRef<HTMLHeadingElement>(null);
+  const matrixTitleRef  = useRef<HTMLHeadingElement>(null);
+  const expTitleRef     = useRef<HTMLHeadingElement>(null);
+  const contactTitleRef = useRef<HTMLHeadingElement>(null);
+  const [barsVisible, setBarsVisible] = useState(false);
+  const [introIn,     setIntroIn]     = useState(false);
+  const [matrixIn,    setMatrixIn]    = useState(false);
+  const [expIn,       setExpIn]       = useState(false);
+  const [contactIn,   setContactIn]   = useState(false);
 
-  useEffect(() => {
-    const el = portraitRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add('visible'); obs.disconnect(); } },
-      { threshold: 0.3 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
 
   useEffect(() => {
     const el = gridboxRef.current;
@@ -56,9 +32,11 @@ export default function AboutPage() {
   }, []);
 
   useEffect(() => {
-    const pairs: [React.RefObject<HTMLDivElement | null>, (v: boolean) => void][] = [
-      [matrixTitleRef, setMatrixIn],
-      [expTitleRef,    setExpIn],
+    const pairs: [React.RefObject<HTMLElement | null>, (v: boolean) => void][] = [
+      [introTitleRef,   setIntroIn],
+      [matrixTitleRef,  setMatrixIn],
+      [expTitleRef,     setExpIn],
+      [contactTitleRef, setContactIn],
     ];
     const observers = pairs.map(([ref, set]) => {
       const obs = new IntersectionObserver(
@@ -78,16 +56,21 @@ export default function AboutPage() {
       <section className="about">
         <div className="grid">
           <div className="about-text">
-            <span className="stamp">§ 02 — 소개</span>
+            <h2 ref={introTitleRef}>
+              <span className="en-tag">INTRO</span>
+              <Reveal text="소개" active={introIn} />
+            </h2>
             <p>
-              디자이너와 가장 가까이 앉는 엔지니어입니다.{' '}
-              <b>인터페이스의 무게</b>, 모션의 결, 그리고 화면이 사용자에게 처음 닿는
-              0.3초를 가장 오래 들여다봅니다. 빠르게 만드는 것보다{' '}
-              <b>한 번 더 다듬는 것</b>을 언제나 선택합니다.
+              웹 퍼블리셔로 일하면서, 화면을 만드는 일이 생각보다 훨씬 재미있다는 걸 알았습니다.<br /><br />
+              디자인을 코드로 옮기는 것에서 시작했지만, 어느 순간 그 너머가 궁금해졌습니다.<br /><br />
+              단순히 화면을 구현하는 것을 넘어, 사용자가 실제로 경험하는 것들을 직접 만들고 싶었습니다.<br /><br />
+              어디서 불편할지, 어떻게 하면 더 자연스러울지<br />
+              그 고민이 프론트엔드 개발로 발을 내딛게 만든 이유입니다.<br /><br />
+              아직 배워가는 중이지만, 부족한 점은 인정하고 채워가는 편입니다.<br />
+              더 넓은 곳으로 나아가고 싶다는 마음 하나로, 지금도 도전하고 있습니다.
             </p>
-            <span className="signed">— 지원, 2026</span>
           </div>
-          <div className="about-portrait" ref={portraitRef}>
+          <div className="about-portrait">
             <span className="p-corner tl" aria-hidden />
             <span className="p-corner tr" aria-hidden />
             <span className="p-corner bl" aria-hidden />
@@ -95,7 +78,6 @@ export default function AboutPage() {
             <img src="/my.jpg" alt="손석호" />
             <div className="portrait-meta">
               <span className="portrait-lbl">PORTRAIT</span>
-              <span className="portrait-idx">001</span>
             </div>
           </div>
         </div>
@@ -106,28 +88,36 @@ export default function AboutPage() {
         <div className="grid">
           <h2 ref={matrixTitleRef}>
             <span className="en-tag">STACK MATRIX</span>
-            <Stutter text="기술" active={matrixIn} base={0} /><br />
-            <span className="it"><Stutter text="스택." active={matrixIn} base={320} /></span>
+            <Reveal text="기술스택" active={matrixIn} />
           </h2>
           <p className="lede">
-            매 분기 손에 쥐고 있는 것들. 색이 채워진 도구는 가장 최근에 가장 자주 만진 것들입니다.
+            지금까지 손에 쥐고 일해온 기술들입니다. 매일 조금씩 더해가고 있습니다.
           </p>
           <div className="gridbox" ref={gridboxRef}>
-            {SKILLS.map((skill, i) => (
-              <div className="cell" key={`${skill.label}-${skill.name}`}>
-                <span className="lbl">{skill.label}</span>
-                <span className="val">{skill.name}</span>
-                <div className="bar">
-                  <i
-                    className={skill.highlight ? 'h' : ''}
-                    style={{
-                      width: barsVisible ? `${skill.level}%` : '0',
-                      transitionDelay: barsVisible ? `${i * 60}ms` : '0ms',
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
+            {(() => {
+              let cellIdx = 0;
+              return SKILLS.map((row, i) => {
+                if (row.type === 'sep') {
+                  return <div className="gsep" key={`sep-${i}`}>{row.label}</div>;
+                }
+                const delay = barsVisible ? `${cellIdx++ * 60}ms` : '0ms';
+                return (
+                  <div className="cell" key={`${row.label}-${row.name}`}>
+                    <span className="lbl">{row.label}</span>
+                    <span className="val">{row.name}</span>
+                    <div className="bar">
+                      <i
+                        className={row.highlight ? 'h' : ''}
+                        style={{
+                          width: barsVisible ? `${row.level}%` : '0',
+                          transitionDelay: delay,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              });
+            })()}
           </div>
         </div>
       </section>
@@ -137,16 +127,15 @@ export default function AboutPage() {
         <div className="grid">
           <h2 ref={expTitleRef}>
             <span className="en-tag">CAREER HISTORY</span>
-            <Stutter text="경력," active={expIn} base={0} /><br />
-            <span className="it"><Stutter text="요약." active={expIn} base={320} /></span>
+            <Reveal text="경력 요약" active={expIn} />
           </h2>
           <div className="list">
             {EXPERIENCE.map((item, i) => (
               <div className="item" key={i}>
                 <span className="yr">{item.period}</span>
                 <div className="role">
-                  {item.role}
                   <span>{item.company}</span>
+                  {item.role}
                 </div>
                 <span className="place">{item.location}</span>
                 <span className="arr">↗</span>
@@ -159,9 +148,9 @@ export default function AboutPage() {
       {/* ─── 연락처 ─── */}
       <section className="contact" id="contact">
         <div className="grid">
-          <span className="label">§ 02 — 연락처</span>
-          <h2>
-            CONTACT<br /><span className="blue">ME.</span>
+          <h2 ref={contactTitleRef}>
+            <span className={`rl${contactIn ? ' on' : ''}`}>CONTACT</span><br />
+            <span className={`rl blue${contactIn ? ' on' : ''}`} style={{ transitionDelay: contactIn ? '.1s' : '0s' }}>ME.</span>
           </h2>
 
           <div className="right">

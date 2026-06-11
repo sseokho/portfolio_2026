@@ -6,9 +6,17 @@ import { PROJECTS, type Project } from './Data';
 
 type Tab = 'work' | 'personal';
 
-const TABS: { id: Tab; label: string }[] = [
-  { id: 'personal', label: 'Personal' },
-  { id: 'work',     label: 'Work'     },
+const TABS: { id: Tab; label: string; desc: string }[] = [
+  {
+    id: 'personal',
+    label: 'Personal',
+    desc: '스스로 배우고 싶은 것들을 직접 만들어보며 쌓아온 프로젝트들입니다.\nReact, Next.js, TypeScript, JavaScript, React Native를 활용해 다양한 웹 애플리케이션을 제작했으며, 기획부터 구현까지 혼자 고민하고 결정하는 과정에서 가장 많이 성장했습니다.',
+  },
+  {
+    id: 'work',
+    label: 'Work',
+    desc: '실제 클라이언트와 함께한 프로젝트들입니다.\n관공서, 교육기관, 기업 등 다양한 업종의 웹사이트를 PC와 모바일 환경에 맞게 반응형으로 구현했습니다.\n요구사항을 정확히 파악하고 일정 안에 맞추는 것, 그리고 유지보수까지 책임지는 것이 이 경험에서 배운 것들입니다.',
+  },
 ];
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
@@ -46,28 +54,22 @@ export default function ProjectsPage() {
 
       {/* 섹션 헤더 */}
       <div className="projects-header grid">
-        <div className="ph-left">
-          <span className="ph-label">§ 01 — Selected Works</span>
-          <h1 className="ph-title">Projects</h1>
-          <div className="tabs" style={{ marginTop: 32 }}>
-            {TABS.map(({ id, label }) => (
-              <button
-                key={id}
-                className={`tab${tab === id ? ' on' : ''}`}
-                onClick={() => setTab(id)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+        <div className="tabs">
+          {TABS.map(({ id, label }) => (
+            <button
+              key={id}
+              className={`tab${tab === id ? ' on' : ''}`}
+              onClick={() => setTab(id)}
+            >
+              {label}
+            </button>
+          ))}
         </div>
-        <div className="ph-right">
-          <p className="ph-desc">
-            클라이언트 의뢰부터 개인 실험까지 — 인터페이스의 질감과
-            모션의 결을 치밀하게 다듬어온 작업들입니다.
-          </p>
-          <span className="ph-count">{filtered.length} Projects</span>
-        </div>
+        <p className="ph-desc">
+          {TABS.find(t => t.id === tab)?.desc.split('\n').map((line, i, arr) => (
+            <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+          ))}
+        </p>
       </div>
 
       {/* 카드 그리드 */}

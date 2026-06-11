@@ -172,14 +172,6 @@ export interface CertItem {
   date: string;
 }
 
-export const CERTIFICATIONS: CertItem[] = [
-  { name: '정보처리기사',       issuer: '한국산업인력공단',         date: '2024.12' },
-  { name: '웹디자인개발기능사', issuer: '한국산업인력공단',         date: '2019.09' },
-  { name: '정보처리산업기사',   issuer: '한국산업인력공단',         date: '2018.11' },
-  { name: '1종보통운전면허',    issuer: '경찰청',                   date: '2015.02' },
-  { name: '워드프로세서 2급',   issuer: '대한상공회의소',           date: '2011.02' },
-];
-
 // ─── 연락처 링크 ───
 export const CONTACT_LINKS = [
   { label: 'LinkedIn', href: '#' },

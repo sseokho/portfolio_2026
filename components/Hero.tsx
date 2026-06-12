@@ -3,10 +3,7 @@
 import { useEffect, useRef } from 'react';
 
 const KEYWORDS = ['Semantic', 'Responsive', 'Interactive', 'Optimized'];
-const NAME = 'SONSEOKHO PORTFOLIO';
 const K_SPD = 280;
-const TYPE_START = KEYWORDS.length * K_SPD + 300;
-const TYPE_SPD = 65;
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -31,7 +28,7 @@ export default function Hero() {
     <section className="hero" id="hero" ref={heroRef}>
       <div className="grid">
 
-        {/* 키워드 + 이름 인트로 */}
+        {/* 키워드 인트로 */}
         <div className="hero-intro">
           <div className="hero-kw">
             {KEYWORDS.map((kw, i) => (
@@ -44,23 +41,6 @@ export default function Hero() {
               </span>
             ))}
           </div>
-          <div className="hero-name">
-            {[...NAME].map((ch, i) => (
-              <span
-                key={i}
-                className="tc"
-                style={{ '--d': `${TYPE_START + i * TYPE_SPD}ms` } as React.CSSProperties}
-              >
-                {ch}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* 좌상단 스탬프 */}
-        <div className="id">
-          <span className="stamp">프론트엔드</span>
-          <p className="v">IDX V.2.6 · 2026</p>
         </div>
 
         {/* 타이틀 */}

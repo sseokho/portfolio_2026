@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 const NAV = [
-  { href: '/',         label: 'HOME',     title: 'INDEX'    },
+  { href: '/',         label: 'HOME',     title: 'HOME'     },
   { href: '/projects', label: 'PROJECTS', title: 'PROJECTS' },
   { href: '/about',    label: 'ABOUT',    title: 'ABOUT'    },
 ];
@@ -17,7 +17,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [open, setOpen]         = useState(false);
   const [trans, setTrans]       = useState<'idle' | 'in' | 'out'>('idle');
   const [transTitle, setTransTitle] = useState('');
-  const isFirst = useRef(true);
+  const isFirst   = useRef(true);
+  const dotRef    = useRef<HTMLDivElement>(null);
+  const ringRef   = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tick = () => {
@@ -56,8 +58,41 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  useEffect(() => {
+    const dot  = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+
+    const DR = 3.5;  // dot radius (7px / 2)
+    const RR = 17;   // ring radius (34px / 2)
+    let mx = 0, my = 0, rx = 0, ry = 0, raf: number;
+
+    const onMove = (e: MouseEvent) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx - DR}px, ${my - DR}px)`;
+      const hov = !!(e.target as HTMLElement).closest('a, button');
+      dot.classList.toggle('hov', hov);
+      ring.classList.toggle('hov', hov);
+      dot.classList.add('vis');
+      ring.classList.add('vis');
+    };
+
+    const tick = () => {
+      rx += (mx - rx) * .12;
+      ry += (my - ry) * .12;
+      ring.style.transform = `translate(${rx - RR}px, ${ry - RR}px)`;
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    window.addEventListener('mousemove', onMove, { passive: true });
+    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(raf); };
+  }, []);
+
   return (
     <>
+      <div className="cur-dot" ref={dotRef}  aria-hidden />
+      <div className="cur-ring" ref={ringRef} aria-hidden />
       <div className="noise" aria-hidden />
 
       <header className="ruler-top">

@@ -75,7 +75,7 @@ export default function AboutPage() {
             <span className="p-corner tr" aria-hidden />
             <span className="p-corner bl" aria-hidden />
             <span className="p-corner br" aria-hidden />
-            <img src="/my.jpg" alt="손석호" />
+            <img src="/images/my.jpg" alt="손석호" />
             <div className="portrait-meta">
               <span className="portrait-lbl">PORTRAIT</span>
             </div>
@@ -107,7 +107,6 @@ export default function AboutPage() {
                     <span className="val">{row.name}</span>
                     <div className="bar">
                       <i
-                        className={row.highlight ? 'h' : ''}
                         style={{
                           width: barsVisible ? `${row.level}%` : '0',
                           transitionDelay: delay,

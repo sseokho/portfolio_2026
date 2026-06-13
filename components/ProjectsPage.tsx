@@ -27,14 +27,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className="thumb">
-        {project.thumb
-          ? <img src={project.thumb} alt={project.title} />
-          : <span className="thumb-num">{project.num}</span>
-        }
+        {project.thumb && <img src={project.thumb} alt={project.title} />}
         <span className="arr">↗</span>
       </div>
       <div className="info">
-        <span className="n">{project.num}</span>
         <h3 className="title">{project.title}</h3>
         <p className="desc">{project.desc}</p>
         <span className="meta">{project.client} · {project.role}</span>

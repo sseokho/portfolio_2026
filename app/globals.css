@@ -167,7 +167,7 @@ main { padding: 32px 0; }
 
 /* ─── hero ─── */
 .hero {
-  position: relative; padding: 8px 0; overflow: hidden; min-height: 100vh;
+  position: relative; padding: 8px 0; overflow: hidden; height: 100vh;
 }
 .hero::before { display: none; }
 .hero::after {
@@ -177,8 +177,8 @@ main { padding: 32px 0; }
 .hero .grid {
   grid-template-rows: auto auto auto 1fr;
   align-items: start;
-  height: 100%; min-height: 100vh;
-  padding-top: 24px; padding-bottom: 40px;
+  height: 100%;
+  padding-top: 24px; padding-bottom: 0;
 }
 
 .hero-intro {
@@ -253,7 +253,7 @@ main { padding: 32px 0; }
 
 
 .hero-bottom {
-  grid-row: 4; grid-column: 1 / span 12; align-self: end;
+  position: absolute; bottom: 90px; left: 16px; right: 16px;
   display: flex; align-items: end; justify-content: space-between; gap: 48px;
   border-top: 1px solid var(--line-soft); padding-top: 20px;
 }
@@ -291,16 +291,21 @@ main { padding: 32px 0; }
 }
 @keyframes spin-slow { to { transform: rotate(360deg); } }
 
-.sticker-badge {
-  bottom: 18%; left: 4%;
+.hero-github-badge {
+  grid-row: 3; grid-column: 10 / span 3;
+  align-self: end; justify-self: end;
   display: inline-flex; align-items: center; gap: 9px;
   font-family: 'JetBrains Mono', monospace; font-size: 11px;
   letter-spacing: .12em; text-transform: uppercase;
   border: 1px solid var(--ink); border-radius: 100px;
   padding: 9px 18px;
-  transform: rotate(-5deg);
+  transform: rotate(-3deg);
   background: var(--white);
+  text-decoration: none; color: var(--ink);
+  transition: background .2s, color .2s;
+  margin-bottom: 24px;
 }
+.hero-github-badge:hover { background: var(--ink); color: var(--paper); }
 .sticker-dot {
   width: 7px; height: 7px; border-radius: 50%;
   background: #19c37d; box-shadow: 0 0 0 3px rgba(25,195,125,.2);
@@ -330,8 +335,9 @@ main { padding: 32px 0; }
 .overview { background: var(--white); position: relative; z-index: 2; }
 .overview .ov-label {
   grid-column: 1 / span 12; padding: 64px 0 32px;
-  font-family: 'JetBrains Mono', monospace; font-size: 10px;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--mute);
+  font-family: 'Archivo Black', sans-serif; font-weight: 900;
+  font-size: clamp(36px, 4.6vw, 72px); letter-spacing: -.025em; line-height: .98;
+  color: var(--ink); text-transform: uppercase;
 }
 .ov-row {
   display: block;
@@ -473,8 +479,7 @@ main { padding: 32px 0; }
 .matrix .cell .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); letter-spacing: .08em; text-transform: uppercase; }
 .matrix .cell .val { font-family: 'Archivo Black', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: -.015em; margin-top: 24px; line-height: 1.1; }
 .matrix .cell .bar { margin-top: 10px; height: 3px; background: var(--line-soft); position: relative; overflow: hidden; }
-.matrix .cell .bar i { position: absolute; left: 0; top: 0; height: 100%; background: var(--ink); transition: width .8s cubic-bezier(.2,.7,0,1); }
-.matrix .cell .bar i.h { background: var(--accent); }
+.matrix .cell .bar i { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); transition: width .8s cubic-bezier(.2,.7,0,1); }
 .matrix .gridbox .gsep { grid-column: 1 / -1; padding: 8px 14px 7px; background: var(--paper); font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); letter-spacing: .1em; text-transform: uppercase; }
 
 /* ─── section en-tag ─── */
@@ -525,7 +530,7 @@ main { padding: 32px 0; }
   display: flex; flex-direction: column; gap: 24px;
 }
 .about .about-portrait {
-  grid-column: 10 / span 3;
+  grid-column: 11 / span 2;
   position: relative; align-self: end;
   aspect-ratio: 3 / 4;
   border: 1px solid var(--line);

@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
     desc: '패션 커머스 플랫폼 PC/모바일 반응형 리뉴얼, 상품 목록·상세·결제 등 주요 구매 흐름 페이지 퍼블리싱',
     type: 'work',
     href: '#',
-    thumb: '/lf-squaremall.png',
+    thumb: '/images/lf-squaremall.png',
   },
   {
     id: 'kha',
@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     desc: '의료기관 대상 공공 웹사이트 신규 구축, 공지·자료실·협회 소개 등 전 페이지 반응형 퍼블리싱',
     type: 'work',
     href: '#',
-    thumb: '/kha.png',
+    thumb: '/images/kha.png',
   },
   {
     id: 'kma',
@@ -54,7 +54,7 @@ export const PROJECTS: Project[] = [
     desc: '지역 경제 진흥 기관 공식 사이트 반응형 제작, 사업 소개·조직도·게시판 등 기관 정보 전달 중심 화면 구성',
     type: 'work',
     href: '#',
-    thumb: '/epaa.png',
+    thumb: '/images/epaa.png',
   },
   {
     id: 'eum',
@@ -65,7 +65,7 @@ export const PROJECTS: Project[] = [
     desc: '장애인 문화예술 콘텐츠 서비스 웹접근성 고려 퍼블리싱, 스크린리더 대응 및 키보드 탐색 등 WCAG 기준 준수',
     type: 'work',
     href: '#',
-    thumb: '/ieum.png',
+    thumb: '/images/ieum.png',
   },
   {
     id: 'youguard',
@@ -103,24 +103,24 @@ export const PROJECTS: Project[] = [
 // ─── 스택 매트릭스 ───
 export type SkillRow =
   | { type: 'sep'; label: string }
-  | { type: 'cell'; label: string; name: string; level: number; highlight?: boolean };
+  | { type: 'cell'; label: string; name: string; level: number };
 
 export const SKILLS: SkillRow[] = [
   { type: 'sep',  label: 'Front-end' },
-  { type: 'cell', label: 'Lang',  name: 'JavaScript',        level: 90, highlight: true },
-  { type: 'cell', label: 'Lang',  name: 'TypeScript',        level: 85, highlight: true },
-  { type: 'cell', label: 'Fwk',   name: 'React',             level: 88, highlight: true },
-  { type: 'cell', label: 'Fwk',   name: 'Next.js',           level: 85, highlight: true },
+  { type: 'cell', label: 'Lang',  name: 'JavaScript',        level: 90 },
+  { type: 'cell', label: 'Lang',  name: 'TypeScript',        level: 85 },
+  { type: 'cell', label: 'Fwk',   name: 'React',             level: 88 },
+  { type: 'cell', label: 'Fwk',   name: 'Next.js',           level: 85 },
   { type: 'sep',  label: 'UI & State' },
-  { type: 'cell', label: 'Style', name: 'Tailwind CSS',      level: 72, highlight: true },
+  { type: 'cell', label: 'Style', name: 'Tailwind CSS',      level: 72 },
   { type: 'cell', label: 'Style', name: 'Styled-components', level: 53 },
-  { type: 'cell', label: 'State', name: 'Zustand',           level: 75, highlight: true },
-  { type: 'cell', label: 'Tool',  name: 'Figma',             level: 82, highlight: true },
+  { type: 'cell', label: 'State', name: 'Zustand',           level: 75 },
+  { type: 'cell', label: 'Tool',  name: 'Figma',             level: 82 },
   { type: 'sep',  label: 'Backend & Infra' },
   { type: 'cell', label: 'BaaS',  name: 'Firebase',          level: 68 },
   { type: 'cell', label: 'BaaS',  name: 'Supabase',          level: 65 },
   { type: 'cell', label: 'Infra', name: 'Vercel',            level: 80 },
-  { type: 'cell', label: 'Tool',  name: 'GitHub',            level: 85, highlight: true },
+  { type: 'cell', label: 'Tool',  name: 'GitHub',            level: 85 },
 ];
 
 // ─── 경력 ───

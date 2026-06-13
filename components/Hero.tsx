@@ -57,35 +57,41 @@ export default function Hero() {
             <span className="line"><span className="h1-outline">PORTFOLIO</span></span>
           </h1>
           <p className="lead">
-            디자이너와 가장 가까이 앉는 엔지니어. <em>인터페이스의 무게</em>와 모션의 결,
-            그리고 화면이 사용자에게 처음 닿는 0.3초를 가장 오래 들여다봅니다.
+            사용자가 마주하는 화면을 만드는 일에 진심입니다. 손석호입니다.<br />
+            더 넓은 세상에서 다양한 경험과 도전을 쌓아가고 싶습니다.
           </p>
         </div>
 
-        {/* 하단: stats + meta 통합 */}
-        <div className="hero-bottom">
-          <div className="hb-stats">
-            <div className="hb-stat">
-              <span className="hb-n">04</span>
-              <span className="hb-l">Years Exp.</span>
-            </div>
-            <div className="hb-stat">
-              <span className="hb-n">20+</span>
-              <span className="hb-l">Projects</span>
-            </div>
-            <div className="hb-stat">
-              <span className="hb-n">2020</span>
-              <span className="hb-l">Since</span>
-            </div>
-          </div>
-          <dl className="hb-meta">
-            <div><dt>위치</dt><dd>서울, 대한민국</dd></div>
-            <div><dt>경력</dt><dd>4년차 프론트엔드</dd></div>
-            <div><dt>상태</dt><dd><span className="avail">프리랜스 가능</span></dd></div>
-            <div><dt>이메일</dt><dd>tjrgh538@naver.com</dd></div>
-          </dl>
-        </div>
+        {/* GitHub 배지 */}
+        <a className="hero-github-badge" href="https://github.com/sseokho" target="_blank" rel="noreferrer">
+          <span className="sticker-dot" />
+          OPEN TO GITHUB
+        </a>
 
+      </div>
+
+      {/* 하단: stats + meta 통합 */}
+      <div className="hero-bottom">
+        <div className="hb-stats">
+          <div className="hb-stat">
+            <span className="hb-n">04</span>
+            <span className="hb-l">Years Exp.</span>
+          </div>
+          <div className="hb-stat">
+            <span className="hb-n">20+</span>
+            <span className="hb-l">Projects</span>
+          </div>
+          <div className="hb-stat">
+            <span className="hb-n">2020</span>
+            <span className="hb-l">Since</span>
+          </div>
+        </div>
+        <dl className="hb-meta">
+          <div><dt>위치</dt><dd>서울, 대한민국</dd></div>
+          <div><dt>경력</dt><dd>4년차 프론트엔드</dd></div>
+          <div><dt>상태</dt><dd><span className="avail">프리랜스 가능</span></dd></div>
+          <div><dt>이메일</dt><dd>tjrgh538@naver.com</dd></div>
+        </dl>
       </div>
 
       {/* 스티커 */}
@@ -103,10 +109,6 @@ export default function Hero() {
         </svg>
       </div>
 
-      <div className="sticker sticker-badge" aria-hidden>
-        <span className="sticker-dot"/>
-        OPEN TO WORK
-      </div>
 
       <div className="wm-track" aria-hidden>
         {[0, 1].map(i => (

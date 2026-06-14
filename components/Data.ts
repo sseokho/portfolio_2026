@@ -156,9 +156,8 @@ export interface CertItem {
 
 // ─── 연락처 링크 ───
 export const CONTACT_LINKS = [
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Github',   href: '#' },
-  { label: 'Read.cv',  href: '#' },
-  { label: 'Are.na',   href: '#' },
-  { label: '이력서.pdf', href: '#' },
+  { label: '이메일',                    href: 'mailto:tjrgh538@naver.com' },
+  { label: '깃허브',                    href: 'https://github.com/seokho538' },
+  { label: '소프트웨어 경력증명서 보기', href: '/etc/software.pdf.pdf' },
+  { label: '이력서',                    href: '#' },
 ];

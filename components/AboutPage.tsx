@@ -154,19 +154,15 @@ export default function AboutPage() {
 
           <div className="right">
             {CONTACT_LINKS.map(link => (
-              <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+                rel={link.href.startsWith('mailto:') ? undefined : 'noreferrer'}
+              >
                 {link.label} <span>↗</span>
               </a>
             ))}
-          </div>
-
-          <div className="email-big">
-            <a href="mailto:tjrgh538@naver.com">
-              tjrgh538@naver.com <span className="c">↗</span>
-            </a>
-            <span className="note">
-              평일 기준<br />24시간 이내로 답변드립니다.
-            </span>
           </div>
         </div>
       </section>

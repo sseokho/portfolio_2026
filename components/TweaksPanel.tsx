@@ -49,35 +49,6 @@ export default function TweaksPanel() {
             </div>
           </div>
 
-          {/* 레이아웃 섹션 */}
-          <div>
-            <p className="tweaks-section-label">레이아웃</p>
-
-            <div className="tweak-row">
-              <label>컬럼 룰러</label>
-              <button
-                className={`toggle-btn${tweaks.rails ? ' on' : ''}`}
-                onClick={() => set('rails', !tweaks.rails)}
-                aria-pressed={tweaks.rails}
-                aria-label="컬럼 룰러 토글"
-              />
-            </div>
-
-            <div className="tweak-row">
-              <label>밀도</label>
-              <div className="radio-group">
-                {DENSITY_OPTIONS.map(opt => (
-                  <button
-                    key={opt.value}
-                    className={`radio-btn${tweaks.density === opt.value ? ' on' : ''}`}
-                    onClick={() => set('density', opt.value)}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       )}
 

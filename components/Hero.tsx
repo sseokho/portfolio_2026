@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react';
 
 const KEYWORDS = ['Semantic', 'Responsive', 'Interactive', 'Optimized'];
 const K_SPD = 280;
-
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
 
@@ -23,6 +22,7 @@ export default function Hero() {
     el.addEventListener('mousemove', onMove);
     return () => el.removeEventListener('mousemove', onMove);
   }, []);
+
 
   return (
     <section className="hero" id="hero" ref={heroRef}>
@@ -47,12 +47,7 @@ export default function Hero() {
         <div className="head">
           <h1>
             <span className="line">
-              <span className="h1-strong">
-                SONSEOKHO
-                <svg className="h1-underline" viewBox="0 0 520 14" preserveAspectRatio="none" aria-hidden>
-                  <path d="M 3,10 Q 70,2 140,9 Q 210,16 280,7 Q 360,1 440,9 Q 480,13 517,8" />
-                </svg>
-              </span>
+              <span className="h1-strong">SONSEOKHO</span>
             </span>
             <span className="line"><span className="h1-outline">PORTFOLIO</span></span>
           </h1>
@@ -70,28 +65,40 @@ export default function Hero() {
 
       </div>
 
-      {/* 하단: stats + meta 통합 */}
+      {/* 하단: 스탯 + 메타 */}
       <div className="hero-bottom">
         <div className="hb-stats">
           <div className="hb-stat">
-            <span className="hb-n">04</span>
-            <span className="hb-l">Years Exp.</span>
+            <span className="hb-stat-num">05</span>
+            <span className="hb-stat-lbl">Years Exp</span>
           </div>
           <div className="hb-stat">
-            <span className="hb-n">20+</span>
-            <span className="hb-l">Projects</span>
+            <span className="hb-stat-num">20+</span>
+            <span className="hb-stat-lbl">Projects</span>
           </div>
           <div className="hb-stat">
-            <span className="hb-n">2020</span>
-            <span className="hb-l">Since</span>
+            <span className="hb-stat-num">2020</span>
+            <span className="hb-stat-lbl">Since</span>
           </div>
         </div>
-        <dl className="hb-meta">
-          <div><dt>위치</dt><dd>서울, 대한민국</dd></div>
-          <div><dt>경력</dt><dd>4년차 프론트엔드</dd></div>
-          <div><dt>상태</dt><dd><span className="avail">프리랜스 가능</span></dd></div>
-          <div><dt>이메일</dt><dd>tjrgh538@naver.com</dd></div>
-        </dl>
+        <div className="hb-meta">
+          <div className="hb-meta-item">
+            <span className="hb-meta-lbl">Location</span>
+            <span className="hb-meta-val">서울, 대한민국</span>
+          </div>
+          <div className="hb-meta-item">
+            <span className="hb-meta-lbl">Experience</span>
+            <span className="hb-meta-val">5년차 퍼블리셔</span>
+          </div>
+          <div className="hb-meta-item">
+            <span className="hb-meta-lbl">Status</span>
+            <span className="hb-meta-val hb-avail">입사 가능</span>
+          </div>
+          <a className="hb-meta-item hb-email" href="mailto:tjrgh538@naver.com">
+            <span className="hb-meta-lbl">Email</span>
+            <span className="hb-meta-val">tjrgh538@naver.com</span>
+          </a>
+        </div>
       </div>
 
       {/* 스티커 */}
@@ -102,23 +109,13 @@ export default function Hero() {
           </defs>
           <g className="sticker-ring">
             <text fontFamily="'JetBrains Mono',monospace" fontSize="10.5" letterSpacing="2.8" fill="currentColor" textAnchor="start">
-              <textPath href="#cp">FRONTEND · DEVELOPER · 2026 · </textPath>
+              <textPath href="#cp">THINK · MAKE · SHIP · 2026 · </textPath>
             </text>
           </g>
           <text x="60" y="67" textAnchor="middle" fontSize="22" fill="currentColor">✦</text>
         </svg>
       </div>
 
-
-      <div className="wm-track" aria-hidden>
-        {[0, 1].map(i => (
-          <span key={i} className="wm">
-            {Array.from({ length: 6 }).map((_, j) => (
-              <span key={j}>SEOKHO SON · FRONTEND DEVELOPER · </span>
-            ))}
-          </span>
-        ))}
-      </div>
     </section>
   );
 }

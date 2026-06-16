@@ -37,7 +37,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'SEOKHO SON — Index v.2',
-  description: '디자인 엔지니어 김지원의 포트폴리오',
+  description: '프론트엔드 개발자 손석호의 포트폴리오',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

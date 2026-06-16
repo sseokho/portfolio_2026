@@ -26,7 +26,7 @@ export default function Overview() {
   return (
     <section className="overview" ref={ref}>
       <div className="grid">
-        <span className="ov-label reveal">Overview</span>
+        <span className="ov-label reveal">OVERVIEW</span>
         <p className="ov-lead reveal">
           <span className="ov-lead-tag">Projects</span>{ITEMS[0].desc}
           {' '}
@@ -34,18 +34,23 @@ export default function Overview() {
         </p>
       </div>
 
-      {ITEMS.map(({ num, href, title, label }) => (
-        <Link key={href} href={href} className="ov-row">
-          <div className="grid">
-            <span className="ov-num">{num}</span>
-            <h2 className="ov-title">{title}</h2>
-            <div className="ov-meta">
-              <span>{label}</span>
-              <span className="ov-arr">↗</span>
+      <div className="ov-cards">
+        {ITEMS.map(({ num, href, title, desc, label }, index) => (
+          <Link key={href} href={href} className="ov-card reveal" style={{ transitionDelay: `${index * 80}ms` }}>
+            <div className="ov-card-head">
+              <div className="ov-card-head-top">
+                <span className="ov-n">{num}</span>
+                <span className="ov-arr">↗</span>
+              </div>
+              <h2 className="ov-title">{title}</h2>
             </div>
-          </div>
-        </Link>
-      ))}
+            <div className="ov-card-body">
+              <p className="ov-desc">{desc}</p>
+              <span className="ov-meta">{label}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 }

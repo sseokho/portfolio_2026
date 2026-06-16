@@ -3,7 +3,14 @@
     "allow": [
       "Bash(npx tsc *)",
       "WebFetch(domain:api.anthropic.com)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Read(//private/etc/**)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000 -o /dev/null -w \"%{http_code}\\\\n\")",
+      "Bash(curl -s -o /dev/null -w \"icon: %{http_code}\\\\n\" http://localhost:3000/icon)",
+      "Bash(curl -s -o /dev/null -w \"apple-icon: %{http_code}\\\\n\" http://localhost:3000/apple-icon)",
+      "Bash(curl -s http://localhost:3000/icon -o /tmp/icon_test.png)",
+      "Read(//tmp/**)"
     ]
   }
 }

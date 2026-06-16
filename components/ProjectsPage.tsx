@@ -24,6 +24,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     <a
       className="proj-card reveal"
       href={project.href ?? '#'}
+      target="_blank"
+      rel="noreferrer"
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className="thumb">
@@ -40,7 +42,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsPage() {
-  const [tab, setTab] = useState<Tab>('work');
+  const [tab, setTab] = useState<Tab>('personal');
   const ref = useReveal(tab);
 
   const filtered = PROJECTS.filter(p => p.type === tab);

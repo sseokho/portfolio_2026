@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { PROJECTS } from './Data';
 
 const KEYWORDS = ['Semantic', 'Responsive', 'Interactive', 'Optimized'];
 const K_SPD = 280;
@@ -73,7 +74,7 @@ export default function Hero() {
             <span className="hb-stat-lbl">Years Exp</span>
           </div>
           <div className="hb-stat">
-            <span className="hb-stat-num">20+</span>
+            <span className="hb-stat-num">{PROJECTS.length}</span>
             <span className="hb-stat-lbl">Projects</span>
           </div>
           <div className="hb-stat">

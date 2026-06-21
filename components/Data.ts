@@ -100,7 +100,7 @@ export const PROJECTS: Project[] = [
     desc: '일상 태스크 관리 투두 앱, Next.js PWA로 제작, 할 일 등록·완료·분류 등 핵심 기능 화면 및 오프라인 대응 구현',
     type: 'personal',
     href: 'https://littleday-nine.vercel.app',
-    thumb: '/images/lettleday.png',
+    thumb: '/images/littleday.png',
   },
   {
     id: 'sizzle',
@@ -122,7 +122,7 @@ export const PROJECTS: Project[] = [
     desc: 'AI를 활용해 사용자 경험을 개인화하고 다양한 서비스를 통합 제공하는 플랫폼, 핵심 서비스 화면 및 인터랙션 구현',
     type: 'personal',
     href: 'https://nova-plat.vercel.app',
-    thumb: '/images/lettleday.png',
+    thumb: '/images/nova.png',
   },
 ];
 

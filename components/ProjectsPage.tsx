@@ -10,7 +10,7 @@ const TABS: { id: Tab; label: string; desc: string }[] = [
   {
     id: 'personal',
     label: 'Personal',
-    desc: '스스로 배우고 싶은 것들을 직접 만들어보며 쌓아온 프로젝트들입니다.\nReact, Next.js, TypeScript, JavaScript, React Native를 활용해 다양한 웹 애플리케이션을 제작했으며, 기획부터 구현까지 혼자 고민하고 결정하는 과정에서 가장 많이 성장했습니다.',
+    desc: '스스로 배우고 싶은 것들을 직접 만들어보며 쌓아온 프로젝트들입니다.\nReact, Next, Vue, JavaScript를 활용해 다양한 웹 애플리케이션을 제작했으며, 기획부터 구현까지 혼자 고민하고 결정하는 과정에서 가장 많이 성장했습니다.',
   },
   {
     id: 'work',

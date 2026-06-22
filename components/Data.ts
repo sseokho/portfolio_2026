@@ -100,7 +100,7 @@ export const PROJECTS: Project[] = [
     desc: 'Next.js와 Supabase로 만든 미니멀 할 일 관리 앱 — Google 로그인, 실시간 상태 업데이트, PWA 설치까지 지원',
     type: 'personal',
     href: 'https://littleday-nine.vercel.app',
-    thumb: '/images/lettleday.png',
+    thumb: '/images/littleday.png',
   },
   {
     id: 'sizzle',

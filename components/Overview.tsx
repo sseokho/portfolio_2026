@@ -2,6 +2,9 @@
 
 import Link from 'next/link';
 import { useReveal } from './UseReveal';
+import { PROJECTS } from './Data';
+
+const PROJECT_COUNT = PROJECTS.length;
 
 const ITEMS = [
   {
@@ -9,7 +12,7 @@ const ITEMS = [
     href: '/projects',
     title: 'PROJECTS',
     desc: '클라이언트 의뢰부터 개인 실험까지, 인터페이스의 질감과 모션의 결을 다듬어온 작업들. Work와 Personal로 나뉩니다.',
-    label: '8 Projects',
+    label: `${PROJECT_COUNT} Projects`,
   },
   {
     num: '02',

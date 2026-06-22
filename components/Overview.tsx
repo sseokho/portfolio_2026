@@ -11,7 +11,7 @@ const ITEMS = [
     num: '01',
     href: '/projects',
     title: 'PROJECTS',
-    desc: '클라이언트 의뢰부터 개인 작업까지, 직접 만든 결과물들을 담았습니다. 어떤 문제를 마주했고 어떻게 풀었는지, 그 과정까지 함께 확인하실 수 있습니다.',
+    desc: '클라이언트 의뢰부터 개인 작업까지, 직접 만든 결과물들을 담았습니다. React, Next.js, Vue 등 다양한 기술로 구현한 작업들을 확인하실 수 있습니다.',
     label: `${PROJECT_COUNT} Projects`,
   },
   {

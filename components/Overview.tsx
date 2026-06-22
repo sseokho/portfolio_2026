@@ -11,14 +11,14 @@ const ITEMS = [
     num: '01',
     href: '/projects',
     title: 'PROJECTS',
-    desc: '클라이언트 의뢰부터 개인 실험까지, 인터페이스의 질감과 모션의 결을 다듬어온 작업들. Work와 Personal로 나뉩니다.',
+    desc: '클라이언트 의뢰부터 개인 작업까지, 직접 만든 결과물들을 담았습니다. 어떤 문제를 마주했고 어떻게 풀었는지, 그 과정까지 함께 확인하실 수 있습니다.',
     label: `${PROJECT_COUNT} Projects`,
   },
   {
     num: '02',
     href: '/about',
     title: 'ABOUT',
-    desc: '사용하는 스택, 걸어온 경력, 그리고 연락처. 빠르게 만드는 것보다 한 번 더 다듬는 것을 선택하는 엔지니어입니다.',
+    desc: '화면을 만드는 일을 5년째 해오면서 쌓아온 스택과 경력, 그리고 일하는 방식을 소개합니다.',
     label: 'Profile',
   },
 ];

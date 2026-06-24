@@ -447,7 +447,7 @@ main { padding: 32px 0; }
 }
 .proj-card:hover .thumb .arr { opacity: 1; transform: rotate(0deg); }
 .proj-card .info {
-  padding: 20px 0 32px; display: flex; flex-direction: column; gap: 8px;
+  padding: 20px 0 32px; display: flex; flex-direction: column; gap: 8px; flex: 1;
 }
 .proj-card .info .n {
   font-family: 'JetBrains Mono', monospace; font-size: 10px;
@@ -462,6 +462,7 @@ main { padding: 32px 0; }
 .proj-card .info .desc {
   font-size: 13px; color: var(--ink-2); line-height: 1.6;
   display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  min-height: calc(1.6em * 2);
 }
 .proj-card .info .meta {
   font-family: 'JetBrains Mono', monospace; font-size: 10px;

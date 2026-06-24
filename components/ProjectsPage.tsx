@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useReveal } from './UseReveal';
 import { PROJECTS, type Project } from './Data';
 
@@ -18,6 +18,34 @@ const TABS: { id: Tab; label: string; desc: string }[] = [
     desc: '실제 클라이언트와 함께한 프로젝트들입니다.\n관공서, 교육기관, 기업 등 다양한 업종의 웹사이트를 PC와 모바일 환경에 맞게 반응형으로 구현했습니다.\n요구사항을 정확히 파악하고 일정 안에 맞추는 것, 그리고 유지보수까지 책임지는 것이 이 경험에서 배운 것들입니다.',
   },
 ];
+
+function ContributionBar({ value }: { value: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [filled, setFilled] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setFilled(true); },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="contrib" ref={ref}>
+      <div className="contrib-header">
+        <span className="contrib-label">기여도</span>
+        <span className="contrib-value">{value}%</span>
+      </div>
+      <div className="contrib-track">
+        <div className="contrib-fill" style={{ width: filled ? `${value}%` : '0%' }} />
+      </div>
+    </div>
+  );
+}
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
@@ -37,6 +65,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <p className="desc">{project.desc}</p>
         <span className="meta">{project.client} · {project.role}</span>
       </div>
+      <ContributionBar value={project.contribution} />
     </a>
   );
 }

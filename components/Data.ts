@@ -7,6 +7,7 @@ export interface Project {
   role: string;
   desc: string;
   type: 'work' | 'personal';
+  contribution: number;
   href?: string;
   thumb?: string;
 }
@@ -21,6 +22,7 @@ export const PROJECTS: Project[] = [
     role: 'UI 개발',
     desc: '건강보험 빅데이터 분석·제공 플랫폼 반응형 구축, 데이터 신청·현황·통계 등 주요 화면 퍼블리싱',
     type: 'work',
+    contribution: 60,
     href: 'https://nhiss.nhis.or.kr/',
     thumb: '/images/nhis.png',
   },
@@ -32,6 +34,7 @@ export const PROJECTS: Project[] = [
     role: 'UI 개발',
     desc: '패션 커머스 플랫폼 PC/모바일 반응형 리뉴얼, 상품 목록·상세·결제 등 주요 구매 흐름 페이지 퍼블리싱',
     type: 'work',
+    contribution: 70,
     href: 'https://www.lfsquare.com/',
     thumb: '/images/lf-squaremall.png',
   },
@@ -43,6 +46,7 @@ export const PROJECTS: Project[] = [
     role: 'UI 개발',
     desc: '실험실 소모품 B2B 커머스 플랫폼 반응형 제작, 상품 탐색·주문·마이페이지 등 핵심 구매 흐름 화면 구현',
     type: 'work',
+    contribution: 70,
     href: 'https://sseokho.github.io/myBEAKER/',
     thumb: '/images/myBeaker.png',
   },
@@ -54,6 +58,7 @@ export const PROJECTS: Project[] = [
     role: 'UI 개발',
     desc: '의료기관 대상 공공 웹사이트 신규 구축, 공지·자료실·협회 소개 등 전 페이지 반응형 퍼블리싱',
     type: 'work',
+    contribution: 70,
     href: 'https://www.kha.or.kr/kha_home/index.do',
     thumb: '/images/kha.png',
   },
@@ -65,6 +70,7 @@ export const PROJECTS: Project[] = [
     role: '웹 접근성',
     desc: '장애인 문화예술 콘텐츠 서비스 웹접근성 고려 퍼블리싱, 스크린리더 대응 및 키보드 탐색 등 WCAG 기준 준수',
     type: 'work',
+    contribution: 75,
     href: 'https://www.ieum.or.kr',
     thumb: '/images/ieum.png',
   },
@@ -76,6 +82,7 @@ export const PROJECTS: Project[] = [
     role: 'UI 개발',
     desc: '관세·무역 교육기관 공식 사이트 반응형 제작, 교육과정·공지·기관 소개 등 정보 전달 중심 화면 구성',
     type: 'work',
+    contribution: 68,
     href: 'https://www.kctdi.or.kr/kctdi/index.do',
     thumb: '/images/kctdi.png',
   },
@@ -88,6 +95,7 @@ export const PROJECTS: Project[] = [
     role: '기획 · 개발',
     desc: 'Next.js와 Gemini AI로 만든 영화 디스커버리 서비스 — 취향 퀴즈, 자연어 검색, TMDB 트렌딩, OTT 정보까지 지원',
     type: 'personal',
+    contribution: 100,
     href: 'https://dive-five.vercel.app',
     thumb: '/images/dive.png',
   },
@@ -99,6 +107,7 @@ export const PROJECTS: Project[] = [
     role: '기획 · 개발',
     desc: 'Next.js와 Supabase로 만든 미니멀 할 일 관리 앱 — Google 로그인, 실시간 상태 업데이트, PWA 설치까지 지원',
     type: 'personal',
+    contribution: 100,
     href: 'https://littleday-nine.vercel.app',
     thumb: '/images/littleday.png',
   },
@@ -108,8 +117,9 @@ export const PROJECTS: Project[] = [
     title: 'Sizzle — 음식 취향 기반 SNS',
     client: '사이드 프로젝트',
     role: '기획 · 개발',
-    desc: 'Vue 3와 Firebase로 만든 음식 사진 SNS — 팔로우 피드, 실시간 인기 랭킹, 카카오맵 맛집 지도를 담은 소셜 서비스',
+    desc: 'Vue 3와 Firebase로 만든 음식 사진 SNS — 팔로우 피드, 실시간 인기 랭킹, 카카오맵 맛집 지도를 담은 소셜 서비스',
     type: 'personal',
+    contribution: 100,
     href: 'https://sizzle-sns.vercel.app',
     thumb: '/images/sizzle.png',
   },
@@ -121,6 +131,7 @@ export const PROJECTS: Project[] = [
     role: '기획 · 개발',
     desc: 'React와 GSAP ScrollTrigger로 만든 AI 플랫폼 랜딩 페이지 — 수평 스크롤, 패럴랙스, 섹션별 인터랙션 애니메이션을 담은 인터랙티브 웹',
     type: 'personal',
+    contribution: 100,
     href: 'https://nova-plat.vercel.app',
     thumb: '/images/nova.png',
   },
@@ -183,7 +194,7 @@ export interface CertItem {
 // ─── 연락처 링크 ───
 export const CONTACT_LINKS = [
   { label: 'Email',    href: 'mailto:tjrgh538@naver.com' },
-  { label: 'GitHub',   href: 'https://github.com/seokho538' },
+  { label: 'GitHub',   href: 'https://github.com/sseokho' },
   { label: 'Certificate', href: '/etc/software.pdf' },
   { label: 'Resume',   href: '/etc/resume.pdf' },
 ];

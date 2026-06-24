@@ -137,7 +137,6 @@ export default function AboutPage() {
                   {item.role}
                 </div>
                 <span className="place">{item.location}</span>
-                <span className="arr">↗</span>
               </div>
             ))}
           </div>

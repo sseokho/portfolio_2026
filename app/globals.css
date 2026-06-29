@@ -799,6 +799,8 @@ main { padding: 32px 0; }
     padding-bottom: 220px;
   }
   .hero .head { grid-column: 1 / span 12; }
+  .hero .head .lead { font-size: 14px; margin-top: 16px; max-width: 100%; word-break: keep-all; }
+  .lead-br { display: none; }
   .hero-github-badge {
     grid-column: 1 / span 8; grid-row: 4;
     align-self: end; justify-self: start;

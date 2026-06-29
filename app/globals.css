@@ -286,6 +286,7 @@ main { padding: 32px 0; }
   top: 12%; right: 3%;
   transform: rotate(10deg);
 }
+.sticker-circle--inline { display: none; }
 .sticker-ring {
   transform-origin: 60px 60px;
   animation: spin-slow 20s linear infinite;
@@ -792,11 +793,16 @@ main { padding: 32px 0; }
   .drawer { width: 100%; }
 
   /* hero */
+  .hero .grid {
+    grid-template-rows: auto auto 1fr auto;
+    height: calc(100vh - 64px);
+    padding-bottom: 220px;
+  }
   .hero .head { grid-column: 1 / span 12; }
   .hero-github-badge {
     grid-column: 1 / span 8; grid-row: 4;
-    align-self: start; justify-self: start;
-    margin-top: 20px; margin-bottom: 0;
+    align-self: end; justify-self: start;
+    margin-top: 0; margin-bottom: 0;
   }
   .hero-bottom {
     flex-direction: column; align-items: flex-start;
@@ -806,6 +812,15 @@ main { padding: 32px 0; }
   .hb-stat  { padding-right: 20px; margin-right: 20px; }
   .hb-meta  { flex-wrap: wrap; gap: 12px 24px; }
   .sticker-circle { display: none; }
+  .sticker-circle--inline {
+    display: flex; align-items: center; justify-content: center;
+    position: static;
+    grid-column: 10 / span 3; grid-row: 4;
+    align-self: end; justify-self: end;
+    transform: rotate(12deg);
+    width: 80px; height: 80px;
+  }
+  .sticker-circle--inline svg { width: 80px; height: 80px; }
 
   /* overview */
   .overview .ov-label { font-size: clamp(40px, 12vw, 72px); padding: 32px 0 20px; }

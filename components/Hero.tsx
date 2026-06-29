@@ -64,6 +64,21 @@ export default function Hero() {
           OPEN TO GITHUB
         </a>
 
+        {/* 스티커 — 모바일에서 그리드 내 배치 */}
+        <div className="sticker sticker-circle sticker-circle--inline" aria-hidden>
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <defs>
+              <path id="cp2" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/>
+            </defs>
+            <g className="sticker-ring">
+              <text fontFamily="'JetBrains Mono',monospace" fontSize="9" letterSpacing="2.2" fill="currentColor" textAnchor="start">
+                <textPath href="#cp2">THINK · MAKE · SHIP · 2026 · </textPath>
+              </text>
+            </g>
+            <text x="50" y="56" textAnchor="middle" fontSize="18" fill="currentColor">✦</text>
+          </svg>
+        </div>
+
       </div>
 
       {/* 하단: 스탯 + 메타 */}

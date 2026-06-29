@@ -93,7 +93,7 @@ export default function Hero() {
             <span className="hb-stat-lbl">Projects</span>
           </div>
           <div className="hb-stat">
-            <span className="hb-stat-num">2020</span>
+            <span className="hb-stat-num">2021</span>
             <span className="hb-stat-lbl">Since</span>
           </div>
         </div>

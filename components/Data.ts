@@ -93,7 +93,7 @@ export const PROJECTS: Project[] = [
     title: 'DIVE — 영화 취향 탐색',
     client: '사이드 프로젝트',
     role: '기획 · 개발',
-    desc: 'Next.js와 OpenAI로 만든 영화 디스커버리 서비스 — 취향 퀴즈, 자연어 검색, TMDB 트렌딩, OTT 정보까지 지원',
+    desc: 'Next.js와 OpenAI로 만든 영화 디스커버리 서비스 — 취향 퀴즈, 자연어 검색, TMDB 트렌딩, OTT 정보까지 지원',
     type: 'personal',
     contribution: 100,
     href: 'https://dive-five.vercel.app',

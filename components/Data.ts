@@ -15,8 +15,20 @@ export interface Project {
 export const PROJECTS: Project[] = [
   // ─── work ───
   {
-    id: 'nhis',
+    id: 'inaea',
     num: '01',
+    title: '학업성취도평가지원포털',
+    client: '한국교육과정평가원',
+    role: 'UI 개발',
+    desc: 'Next.js 15(App Router) · MUI 기반 SSR/CSR 하이브리드 구조로 공공 포털 반응형 퍼블리싱',
+    type: 'work',
+    contribution: 80,
+    href: 'https://www.inaea.re.kr/portal',
+    thumb: '/images/inaea.png',
+  },
+  {
+    id: 'nhis',
+    num: '02',
     title: '건강보험빅데이터플랫폼 — 반응형 웹',
     client: '국민건강보험공단',
     role: 'UI 개발',
@@ -28,7 +40,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'lf-squaremall',
-    num: '02',
+    num: '03',
     title: 'LF 스퀘어몰 — 반응형 웹',
     client: 'LF Corp.',
     role: 'UI 개발',
@@ -40,7 +52,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'mybeaker',
-    num: '03',
+    num: '04',
     title: '마이비커 — 반응형 웹',
     client: '마이비커',
     role: 'UI 개발',
@@ -52,7 +64,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'kha',
-    num: '04',
+    num: '05',
     title: '대한병원협회 — 반응형 웹',
     client: '대한병원협회',
     role: 'UI 개발',
@@ -64,7 +76,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'ieum',
-    num: '05',
+    num: '06',
     title: '이음온라인 — 웹 접근성',
     client: '이음온라인',
     role: '웹 접근성',
@@ -76,7 +88,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'kctdi',
-    num: '06',
+    num: '07',
     title: '관세무역개발원 — 반응형 웹',
     client: '관세무역개발원',
     role: 'UI 개발',

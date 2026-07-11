@@ -53,7 +53,7 @@ export default function Hero() {
             <span className="line"><span className="h1-outline">PORTFOLIO</span></span>
           </h1>
           <p className="lead">
-            사용자가 마주하는 화면을 만드는 일에 진심입니다. 손석호입니다. <br className="lead-br" />
+            사용자가 마주하는 화면을 만드는 일에 진심인 손석호입니다. <br className="lead-br" />
             더 넓은 세상에서 다양한 경험과 도전을 쌓아가고 싶습니다.
           </p>
         </div>

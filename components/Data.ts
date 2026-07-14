@@ -17,7 +17,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'inaea',
     num: '01',
-    title: '학업성취도평가지원포털',
+    title: '학업성취도평가지원포털 — 반응형 웹',
     client: '한국교육과정평가원',
     role: 'UI 개발',
     desc: 'Next.js 15(App Router) · MUI 기반 SSR/CSR 하이브리드 구조로 공공 포털 반응형 퍼블리싱',
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'mybeaker',
     num: '04',
-    title: '마이비커 — 반응형 웹',
+    title: '마이비커',
     client: '마이비커',
     role: 'UI 개발',
     desc: '아모레퍼시픽 제품 개발용 내부 대시보드 디자인, 미니멀하고 가시성 높은 블루 톤 UX/UI 구현',

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useReveal } from './UseReveal';
+import { useParallax } from './useParallax';
 import { PROJECTS, type Project } from './Data';
 
 type Tab = 'work' | 'personal';
@@ -48,6 +49,7 @@ function ContributionBar({ value }: { value: number }) {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const thumbRef = useParallax<HTMLImageElement>(.08);
   return (
     <a
       className="proj-card reveal"
@@ -57,7 +59,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className="thumb">
-        {project.thumb && <img src={project.thumb} alt={project.title} />}
+        {project.thumb && <img src={project.thumb} alt={project.title} ref={thumbRef} />}
         <span className="arr">↗</span>
       </div>
       <div className="info">

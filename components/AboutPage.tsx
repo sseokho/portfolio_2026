@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
+import { useParallax } from './useParallax';
 
 function Reveal({ text, active }: { text: string; active: boolean }) {
   return <span className={`rl${active ? ' on' : ''}`}>{text}</span>;
@@ -9,6 +10,7 @@ function Reveal({ text, active }: { text: string; active: boolean }) {
 
 export default function AboutPage() {
   const gridboxRef    = useRef<HTMLDivElement>(null);
+  const portraitImgRef = useParallax<HTMLImageElement>(.06);
   const introTitleRef   = useRef<HTMLHeadingElement>(null);
   const matrixTitleRef  = useRef<HTMLHeadingElement>(null);
   const expTitleRef     = useRef<HTMLHeadingElement>(null);
@@ -75,7 +77,7 @@ export default function AboutPage() {
             <span className="p-corner tr" aria-hidden />
             <span className="p-corner bl" aria-hidden />
             <span className="p-corner br" aria-hidden />
-            <img src="/images/my.jpg" alt="손석호" />
+            <img src="/images/my.jpg" alt="손석호" ref={portraitImgRef} />
             <div className="portrait-meta">
               <span className="portrait-lbl">PORTRAIT</span>
             </div>

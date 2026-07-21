@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useReveal } from './UseReveal';
+import { useParallax } from './useParallax';
 import { PROJECTS } from './Data';
 
 const PROJECT_COUNT = PROJECTS.length;
@@ -23,6 +24,25 @@ const ITEMS = [
   },
 ];
 
+function OvCard({ num, href, title, desc, label, index }: (typeof ITEMS)[number] & { index: number }) {
+  const ref = useParallax<HTMLAnchorElement>(.06);
+  return (
+    <Link href={href} className="ov-card reveal" ref={ref} style={{ transitionDelay: `${index * 80}ms` }}>
+      <div className="ov-card-head">
+        <div className="ov-card-head-top">
+          <span className="ov-n">{num}</span>
+          <span className="ov-arr">↗</span>
+        </div>
+        <h2 className="ov-title">{title}</h2>
+      </div>
+      <div className="ov-card-body">
+        <p className="ov-desc">{desc}</p>
+        <span className="ov-meta">{label}</span>
+      </div>
+    </Link>
+  );
+}
+
 export default function Overview() {
   const ref = useReveal();
 
@@ -38,20 +58,8 @@ export default function Overview() {
       </div>
 
       <div className="ov-cards">
-        {ITEMS.map(({ num, href, title, desc, label }, index) => (
-          <Link key={href} href={href} className="ov-card reveal" style={{ transitionDelay: `${index * 80}ms` }}>
-            <div className="ov-card-head">
-              <div className="ov-card-head-top">
-                <span className="ov-n">{num}</span>
-                <span className="ov-arr">↗</span>
-              </div>
-              <h2 className="ov-title">{title}</h2>
-            </div>
-            <div className="ov-card-body">
-              <p className="ov-desc">{desc}</p>
-              <span className="ov-meta">{label}</span>
-            </div>
-          </Link>
+        {ITEMS.map((item, index) => (
+          <OvCard key={item.href} {...item} index={index} />
         ))}
       </div>
     </section>

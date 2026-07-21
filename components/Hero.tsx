@@ -2,11 +2,15 @@
 
 import { useEffect, useRef } from 'react';
 import { PROJECTS } from './Data';
+import { useParallax } from './useParallax';
 
 const KEYWORDS = ['Semantic', 'Responsive', 'Interactive', 'Optimized'];
 const K_SPD = 280;
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
+  const introRef   = useParallax<HTMLDivElement>(.05);
+  const stickerRef = useParallax<HTMLDivElement>(-.12);
+  const stickerInlineRef = useParallax<HTMLDivElement>(-.08);
 
   useEffect(() => {
     requestAnimationFrame(() => heroRef.current?.classList.add('in'));
@@ -30,7 +34,7 @@ export default function Hero() {
       <div className="grid">
 
         {/* 키워드 인트로 */}
-        <div className="hero-intro">
+        <div className="hero-intro" ref={introRef}>
           <div className="hero-kw">
             {KEYWORDS.map((kw, i) => (
               <span
@@ -65,7 +69,7 @@ export default function Hero() {
         </a>
 
         {/* 스티커 — 모바일에서 그리드 내 배치 */}
-        <div className="sticker sticker-circle sticker-circle--inline" aria-hidden>
+        <div className="sticker sticker-circle sticker-circle--inline" ref={stickerInlineRef} aria-hidden>
           <svg viewBox="0 0 100 100" width="100" height="100">
             <defs>
               <path id="cp2" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/>
@@ -118,7 +122,7 @@ export default function Hero() {
       </div>
 
       {/* 스티커 */}
-      <div className="sticker sticker-circle" aria-hidden>
+      <div className="sticker sticker-circle" ref={stickerRef} aria-hidden>
         <svg viewBox="0 0 120 120" width="120" height="120">
           <defs>
             <path id="cp" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>

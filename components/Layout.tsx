@@ -74,6 +74,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       ring.classList.toggle('hov', hov);
       dot.classList.add('vis');
       ring.classList.add('vis');
+      document.documentElement.style.setProperty('--gx', `${(mx / window.innerWidth) * 100}%`);
+      document.documentElement.style.setProperty('--gy', `${(my / window.innerHeight) * 100}%`);
     };
 
     const tick = () => {
@@ -95,6 +97,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <div className="cur-dot" ref={dotRef}  aria-hidden />
       <div className="cur-ring" ref={ringRef} aria-hidden />
+      <div className="mouse-glow" aria-hidden />
       <div className="noise" aria-hidden />
 
       <header className="ruler-top">

@@ -19,7 +19,7 @@ const ITEMS = [
     num: '02',
     href: '/about',
     title: 'ABOUT',
-    desc: '화면을 만드는 일을 5년째 해오면서 쌓아온 스택과 경력, 그리고 일하는 방식을 소개합니다.',
+    desc: '저에 대한 소개와 함께, 5년째 화면을 만들어오며 쌓은 기술과 경험을 정리했습니다.',
     label: 'Profile',
   },
 ];
@@ -50,11 +50,16 @@ export default function Overview() {
     <section className="overview" ref={ref}>
       <div className="grid">
         <span className="ov-label reveal">OVERVIEW</span>
-        <p className="ov-lead reveal">
-          <span className="ov-lead-tag">Projects</span>{ITEMS[0].desc}
-          {' '}
-          <span className="ov-lead-tag">About</span>{ITEMS[1].desc}
-        </p>
+        <div className="ov-lead reveal">
+          <div className="ov-lead-block">
+            <span className="ov-lead-tag">Projects</span>
+            <p>{ITEMS[0].desc}</p>
+          </div>
+          <div className="ov-lead-block">
+            <span className="ov-lead-tag">About</span>
+            <p>{ITEMS[1].desc}</p>
+          </div>
+        </div>
       </div>
 
       <div className="ov-cards">

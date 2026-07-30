@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useReveal } from './UseReveal';
+import { useParallax } from './useParallax';
 import { PROJECTS, type Project } from './Data';
 
 type Tab = 'work' | 'personal';
@@ -10,16 +11,45 @@ const TABS: { id: Tab; label: string; desc: string }[] = [
   {
     id: 'personal',
     label: 'Personal',
-    desc: '스스로 배우고 싶은 것들을 직접 만들어보며 쌓아온 프로젝트들입니다.\nReact, Next.js, TypeScript, JavaScript, React Native를 활용해 다양한 웹 애플리케이션을 제작했으며, 기획부터 구현까지 혼자 고민하고 결정하는 과정에서 가장 많이 성장했습니다.',
+    desc: '스스로 배우고 싶은 것들을 직접 만들어보며 쌓아온 프로젝트들입니다.\nReact, Next.js, Vue, JavaScript를 활용해 다양한 웹 애플리케이션을 기획부터 구현, 배포까지 직접 진행했습니다.',
   },
   {
     id: 'work',
     label: 'Work',
-    desc: '실제 클라이언트와 함께한 프로젝트들입니다.\n관공서, 교육기관, 기업 등 다양한 업종의 웹사이트를 PC와 모바일 환경에 맞게 반응형으로 구현했습니다.\n요구사항을 정확히 파악하고 일정 안에 맞추는 것, 그리고 유지보수까지 책임지는 것이 이 경험에서 배운 것들입니다.',
+    desc: '실제 클라이언트와 함께한 프로젝트들입니다.\n공공기관, 교육기관, 쇼핑몰 등 다양한 업종의 웹사이트를 PC와 모바일 환경에 반응형으로 대응하고, 크로스 브라우징과 접근성까지 고려해 어떤 환경에서도 안정적으로 동작하도록 구현했습니다.',
   },
 ];
 
+function ContributionBar({ value }: { value: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [filled, setFilled] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setFilled(true); },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="contrib" ref={ref}>
+      <div className="contrib-header">
+        <span className="contrib-label">기여도</span>
+        <span className="contrib-value">{value}%</span>
+      </div>
+      <div className="contrib-track">
+        <div className="contrib-fill" style={{ width: filled ? `${value}%` : '0%' }} />
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const thumbRef = useParallax<HTMLImageElement>(.08);
   return (
     <a
       className="proj-card reveal"
@@ -29,7 +59,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className="thumb">
-        {project.thumb && <img src={project.thumb} alt={project.title} />}
+        {project.thumb && <img src={project.thumb} alt={project.title} ref={thumbRef} />}
         <span className="arr">↗</span>
       </div>
       <div className="info">
@@ -37,6 +67,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <p className="desc">{project.desc}</p>
         <span className="meta">{project.client} · {project.role}</span>
       </div>
+      <ContributionBar value={project.contribution} />
     </a>
   );
 }

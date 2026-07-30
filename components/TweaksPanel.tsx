@@ -4,11 +4,6 @@ import { useState } from 'react';
 import { useTweaks } from './UseTweaks';
 
 const ACCENT_OPTIONS = ['#0033ff', '#ff3322', '#0a0a0a', '#2e6f5e', '#ff7a1a', '#7c4dff'];
-const DENSITY_OPTIONS = [
-  { value: 'dense',       label: '촘촘' },
-  { value: 'comfortable', label: '기본' },
-  { value: 'loose',       label: '여유' },
-] as const;
 
 export default function TweaksPanel() {
   const { tweaks, set } = useTweaks();

@@ -65,19 +65,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     const DR = 3.5;  // dot radius (7px / 2)
     const RR = 17;   // ring radius (34px / 2)
-    let mx = 0, my = 0, rx = 0, ry = 0, raf: number;
+    let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0, raf: number;
 
     const onMove = (e: MouseEvent) => {
       mx = e.clientX; my = e.clientY;
-      dot.style.transform = `translate(${mx - DR}px, ${my - DR}px)`;
       const hov = !!(e.target as HTMLElement).closest('a, button');
       dot.classList.toggle('hov', hov);
       ring.classList.toggle('hov', hov);
       dot.classList.add('vis');
       ring.classList.add('vis');
+      document.documentElement.style.setProperty('--gx', `${(mx / window.innerWidth) * 100}%`);
+      document.documentElement.style.setProperty('--gy', `${(my / window.innerHeight) * 100}%`);
     };
 
     const tick = () => {
+      dx += (mx - dx) * .35;
+      dy += (my - dy) * .35;
+      dot.style.transform = `translate(${dx - DR}px, ${dy - DR}px)`;
       rx += (mx - rx) * .12;
       ry += (my - ry) * .12;
       ring.style.transform = `translate(${rx - RR}px, ${ry - RR}px)`;
@@ -93,6 +97,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <div className="cur-dot" ref={dotRef}  aria-hidden />
       <div className="cur-ring" ref={ringRef} aria-hidden />
+      <div className="mouse-glow" aria-hidden />
       <div className="noise" aria-hidden />
 
       <header className="ruler-top">

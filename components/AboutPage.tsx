@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
+import { useParallax } from './useParallax';
 
 function Reveal({ text, active }: { text: string; active: boolean }) {
   return <span className={`rl${active ? ' on' : ''}`}>{text}</span>;
@@ -9,6 +10,7 @@ function Reveal({ text, active }: { text: string; active: boolean }) {
 
 export default function AboutPage() {
   const gridboxRef    = useRef<HTMLDivElement>(null);
+  const portraitImgRef = useParallax<HTMLImageElement>(.06);
   const introTitleRef   = useRef<HTMLHeadingElement>(null);
   const matrixTitleRef  = useRef<HTMLHeadingElement>(null);
   const expTitleRef     = useRef<HTMLHeadingElement>(null);
@@ -61,11 +63,11 @@ export default function AboutPage() {
               <Reveal text="소개" active={introIn} />
             </h2>
             <p>
-              웹 퍼블리셔로 일하면서, 화면을 만드는 일이 생각보다 훨씬 재미있다는 걸 알았습니다.<br /><br />
+              화면을 만드는 일이 생각보다 훨씬 재미있다는 걸, 일을 하면서 알았습니다.<br />
               디자인을 코드로 옮기는 것에서 시작했지만, 어느 순간 그 너머가 궁금해졌습니다.<br /><br />
-              단순히 화면을 구현하는 것을 넘어, 사용자가 실제로 경험하는 것들을 직접 만들고 싶었습니다.<br /><br />
+              단순히 화면을 구현하는 것을 넘어, 사용자가 실제로 경험하는 것들을 직접 만들고 싶었습니다.<br />
               어디서 불편할지, 어떻게 하면 더 자연스러울지<br />
-              그 고민이 프론트엔드 개발로 발을 내딛게 만든 이유입니다.<br /><br />
+              그 고민이 지금의 저를 만든 이유입니다.<br /><br />
               아직 배워가는 중이지만, 부족한 점은 인정하고 채워가는 편입니다.<br />
               더 넓은 곳으로 나아가고 싶다는 마음 하나로, 지금도 도전하고 있습니다.
             </p>
@@ -75,7 +77,7 @@ export default function AboutPage() {
             <span className="p-corner tr" aria-hidden />
             <span className="p-corner bl" aria-hidden />
             <span className="p-corner br" aria-hidden />
-            <img src="/images/my.jpg" alt="손석호" />
+            <img src="/images/my.jpg" alt="손석호" ref={portraitImgRef} />
             <div className="portrait-meta">
               <span className="portrait-lbl">PORTRAIT</span>
             </div>
@@ -137,7 +139,6 @@ export default function AboutPage() {
                   {item.role}
                 </div>
                 <span className="place">{item.location}</span>
-                <span className="arr">↗</span>
               </div>
             ))}
           </div>

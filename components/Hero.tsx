@@ -2,35 +2,26 @@
 
 import { useEffect, useRef } from 'react';
 import { PROJECTS } from './Data';
+import { useParallax } from './useParallax';
 
 const KEYWORDS = ['Semantic', 'Responsive', 'Interactive', 'Optimized'];
 const K_SPD = 280;
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
+  const introRef   = useParallax<HTMLDivElement>(.05);
+  const stickerRef = useParallax<HTMLDivElement>(-.12);
+  const stickerInlineRef = useParallax<HTMLDivElement>(-.08);
 
   useEffect(() => {
     requestAnimationFrame(() => heroRef.current?.classList.add('in'));
   }, []);
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-    const onMove = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect();
-      el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
-      el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
-    };
-    el.addEventListener('mousemove', onMove);
-    return () => el.removeEventListener('mousemove', onMove);
-  }, []);
-
 
   return (
     <section className="hero" id="hero" ref={heroRef}>
       <div className="grid">
 
         {/* 키워드 인트로 */}
-        <div className="hero-intro">
+        <div className="hero-intro" ref={introRef}>
           <div className="hero-kw">
             {KEYWORDS.map((kw, i) => (
               <span
@@ -53,7 +44,7 @@ export default function Hero() {
             <span className="line"><span className="h1-outline">PORTFOLIO</span></span>
           </h1>
           <p className="lead">
-            사용자가 마주하는 화면을 만드는 일에 진심입니다. 손석호입니다.<br />
+            사용자가 마주하는 화면을 만드는 일에 진심인 손석호입니다. <br className="lead-br" />
             더 넓은 세상에서 다양한 경험과 도전을 쌓아가고 싶습니다.
           </p>
         </div>
@@ -63,6 +54,21 @@ export default function Hero() {
           <span className="sticker-dot" />
           OPEN TO GITHUB
         </a>
+
+        {/* 스티커 — 모바일에서 그리드 내 배치 */}
+        <div className="sticker sticker-circle sticker-circle--inline" ref={stickerInlineRef} aria-hidden>
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <defs>
+              <path id="cp2" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/>
+            </defs>
+            <g className="sticker-ring">
+              <text fontFamily="'JetBrains Mono',monospace" fontSize="9" letterSpacing="2.2" fill="currentColor" textAnchor="start">
+                <textPath href="#cp2">THINK · MAKE · SHIP · 2026 · </textPath>
+              </text>
+            </g>
+            <text x="50" y="56" textAnchor="middle" fontSize="18" fill="currentColor">✦</text>
+          </svg>
+        </div>
 
       </div>
 
@@ -78,7 +84,7 @@ export default function Hero() {
             <span className="hb-stat-lbl">Projects</span>
           </div>
           <div className="hb-stat">
-            <span className="hb-stat-num">2020</span>
+            <span className="hb-stat-num">2021</span>
             <span className="hb-stat-lbl">Since</span>
           </div>
         </div>
@@ -103,7 +109,7 @@ export default function Hero() {
       </div>
 
       {/* 스티커 */}
-      <div className="sticker sticker-circle" aria-hidden>
+      <div className="sticker sticker-circle" ref={stickerRef} aria-hidden>
         <svg viewBox="0 0 120 120" width="120" height="120">
           <defs>
             <path id="cp" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>

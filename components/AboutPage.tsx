@@ -57,11 +57,11 @@ export default function AboutPage() {
       {/* ─── 소개 ─── */}
       <section className="about">
         <div className="grid">
+          <h2 className="about-heading" ref={introTitleRef}>
+            <span className="en-tag">INTRO</span>
+            <Reveal text="소개" active={introIn} />
+          </h2>
           <div className="about-text">
-            <h2 ref={introTitleRef}>
-              <span className="en-tag">INTRO</span>
-              <Reveal text="소개" active={introIn} />
-            </h2>
             <p>
               화면을 만드는 일이 생각보다 훨씬 재미있다는 걸, 일을 하면서 알았습니다.<br />
               디자인을 코드로 옮기는 것에서 시작했지만, 어느 순간 그 너머가 궁금해졌습니다.<br /><br />

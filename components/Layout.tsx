@@ -61,15 +61,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      document.documentElement.style.setProperty('--gx', `${(e.clientX / window.innerWidth) * 100}%`);
-      document.documentElement.style.setProperty('--gy', `${(e.clientY / window.innerHeight) * 100}%`);
-    };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    return () => window.removeEventListener('mousemove', onMove);
-  }, []);
-
   return (
     <>
       <div className="mouse-glow" aria-hidden />

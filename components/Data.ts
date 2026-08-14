@@ -86,18 +86,6 @@ export const PROJECTS: Project[] = [
     href: 'https://www.ieum.or.kr',
     thumb: '/images/ieum.png',
   },
-  {
-    id: 'kctdi',
-    num: '07',
-    title: '관세무역개발원 - 반응형 웹',
-    client: '관세무역개발원',
-    role: 'UI 개발',
-    desc: '관세·무역 교육기관 공식 사이트 반응형 제작, 교육과정·공지·기관 소개 등 정보 전달 중심 화면 구성',
-    type: 'work',
-    contribution: 100,
-    href: 'https://www.kctdi.or.kr/kctdi/index.do',
-    thumb: '/images/kctdi.png',
-  },
   // ─── personal ───
   {
     id: 'dive',
@@ -207,6 +195,6 @@ export interface CertItem {
 export const CONTACT_LINKS = [
   { label: 'Email',    href: 'mailto:tjrgh538@naver.com' },
   { label: 'GitHub',   href: 'https://github.com/sseokho' },
-  { label: 'Certificate', href: '/etc/software.pdf' },
+  { label: 'Skill Inventory', href: '/etc/skillinventory.pdf' },
   { label: 'Resume',   href: '/etc/resume.pdf' },
 ];

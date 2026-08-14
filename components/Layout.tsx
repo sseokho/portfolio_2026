@@ -18,8 +18,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [trans, setTrans]       = useState<'idle' | 'in' | 'out'>('idle');
   const [transTitle, setTransTitle] = useState('');
   const isFirst   = useRef(true);
-  const dotRef    = useRef<HTMLDivElement>(null);
-  const ringRef   = useRef<HTMLDivElement>(null);
+  const [prevPathname, setPrevPathname] = useState(pathname);
+
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     const tick = () => {
@@ -42,7 +46,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    setOpen(false);
     if (isFirst.current) { isFirst.current = false; return; }
     const title = NAV.find(n => n.href === pathname)?.title ?? '';
     setTransTitle(title);
@@ -59,44 +62,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const dot  = dotRef.current;
-    const ring = ringRef.current;
-    if (!dot || !ring) return;
-
-    const DR = 3.5;  // dot radius (7px / 2)
-    const RR = 17;   // ring radius (34px / 2)
-    let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0, raf: number;
-
     const onMove = (e: MouseEvent) => {
-      mx = e.clientX; my = e.clientY;
-      const hov = !!(e.target as HTMLElement).closest('a, button');
-      dot.classList.toggle('hov', hov);
-      ring.classList.toggle('hov', hov);
-      dot.classList.add('vis');
-      ring.classList.add('vis');
-      document.documentElement.style.setProperty('--gx', `${(mx / window.innerWidth) * 100}%`);
-      document.documentElement.style.setProperty('--gy', `${(my / window.innerHeight) * 100}%`);
+      document.documentElement.style.setProperty('--gx', `${(e.clientX / window.innerWidth) * 100}%`);
+      document.documentElement.style.setProperty('--gy', `${(e.clientY / window.innerHeight) * 100}%`);
     };
-
-    const tick = () => {
-      dx += (mx - dx) * .35;
-      dy += (my - dy) * .35;
-      dot.style.transform = `translate(${dx - DR}px, ${dy - DR}px)`;
-      rx += (mx - rx) * .12;
-      ry += (my - ry) * .12;
-      ring.style.transform = `translate(${rx - RR}px, ${ry - RR}px)`;
-      raf = requestAnimationFrame(tick);
-    };
-
-    raf = requestAnimationFrame(tick);
     window.addEventListener('mousemove', onMove, { passive: true });
-    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(raf); };
+    return () => window.removeEventListener('mousemove', onMove);
   }, []);
 
   return (
     <>
-      <div className="cur-dot" ref={dotRef}  aria-hidden />
-      <div className="cur-ring" ref={ringRef} aria-hidden />
       <div className="mouse-glow" aria-hidden />
       <div className="noise" aria-hidden />
 
@@ -107,7 +82,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         <span className="center">{NAV.find(n => n.href === pathname)?.title ?? 'SEOKHO SON'}</span>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div className="right">
           <span>{clock}</span>
           <div className="dots">
             {NAV.map(({ href }, i) => (
@@ -119,9 +94,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <div className={`drawer${open ? ' open' : ''}`}>
         <nav>
-          {NAV.map(({ href, label }, i) => (
+          {NAV.map(({ href, label }) => (
             <Link key={href} href={href} className={pathname === href ? 'on' : ''} onClick={() => setOpen(false)}>
-              <span className="n">0{i + 1}</span>
               {label}
             </Link>
           ))}
@@ -148,7 +122,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <footer className="ruler-bot">
         <span>© 2026 SONSEOKHO PORTFOLIO</span>
-        <span>{String(Math.round(progress * 100)).padStart(3, '0')} / 100</span>
         <span>ALL RIGHTS RESERVED</span>
       </footer>
     </>

@@ -65,7 +65,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <div className="info">
         <h3 className="title">{project.title}</h3>
         <p className="desc">{project.desc}</p>
-        <span className="meta">{project.client} · {project.role}</span>
       </div>
       <ContributionBar value={project.contribution} />
     </a>

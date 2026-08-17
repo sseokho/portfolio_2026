@@ -75,11 +75,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         <div className="right">
           <span>{clock}</span>
-          <div className="dots">
-            {NAV.map(({ href }, i) => (
-              <i key={href} className={i <= NAV.findIndex(n => n.href === pathname) ? 'on' : ''} />
-            ))}
-          </div>
         </div>
       </header>
 

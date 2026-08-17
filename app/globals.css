@@ -80,7 +80,7 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 
 /* ─── drawer ─── */
 .drawer {
-  position: fixed; top: 32px; left: 0; bottom: 32px; width: 360px;
+  position: fixed; top: 40px; left: 0; bottom: 40px; width: 360px;
   background: #0d0d0d; border-right: 1px solid #1e1e1e;
   z-index: 45; display: flex; align-items: center;
   transform: translateX(-100%); transition: transform .4s cubic-bezier(.4,0,.2,1);
@@ -153,15 +153,22 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 .hero {
   position: relative; overflow: hidden;
   min-height: calc(100vh - 40px);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  display: flex; flex-direction: column; align-items: center;
   text-align: center;
-  padding: 90px 16px 100px;
+  padding: 90px 16px 32px;
 }
 .hero::before { display: none; }
 
+/* 상단(인트로+타이틀)은 남는 공간에서 수직 중앙, 하단은 바닥에 고정 */
+.hero-center {
+  display: flex; flex-direction: column; align-items: center;
+  width: 100%;
+  margin-top: auto;
+}
+
 .hero-intro {
   display: flex; justify-content: center;
-  font-family: 'JetBrains Mono', 'Pretendard', monospace; font-size: 18px;
+  font-family: 'JetBrains Mono', 'Pretendard', monospace; font-size: clamp(13px, 2.2vw, 18px);
   letter-spacing: .08em; text-transform: uppercase;
   margin-bottom: 24px;
   transform: translateY(var(--parallax-y, 0px));
@@ -175,7 +182,7 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 .hero .head { display: flex; flex-direction: column; align-items: center; max-width: 1000px; }
 .hero .head .lead {
   margin: 36px auto 0;
-  font-size: 22px; line-height: 1.6; color: var(--ink-2); max-width: 52ch;
+  font-size: clamp(15px, 2.8vw, 22px); line-height: 1.6; color: var(--ink-2); max-width: 52ch;
   text-align: center;
   opacity: 0; transform: translateY(14px);
   transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,0,1);
@@ -184,7 +191,7 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 .hero .head .lead em { font-style: normal; color: var(--accent); font-weight: 500; }
 .hero h1 {
   font-family: 'Poppins', 'Pretendard', sans-serif; font-weight: 900;
-  font-size: clamp(64px, 10vw, 168px); line-height: .84; letter-spacing: -.02em;
+  font-size: clamp(44px, 10vw, 168px); line-height: .84; letter-spacing: -.02em;
   text-align: center;
 }
 .hero h1 .line { display: block; overflow: hidden; padding: .04em 0; }
@@ -223,7 +230,8 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 @keyframes caret-blink { 50% { opacity: 0; } }
 
 .hero-bottom {
-  position: absolute; left: 0; right: 0; bottom: 16px;
+  position: static; width: 100%;
+  margin-top: auto;
   display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
   gap: 16px 24px;
   padding: 24px 16px 0 16px;
@@ -236,20 +244,20 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 .hb-stat:last-child { padding-right: 0; margin-right: 0; border-right: none; }
 .hb-stat-num {
   font-family: 'Pretendard', sans-serif; font-weight: 900;
-  font-size: 46px; letter-spacing: -.02em; line-height: 1; color: var(--ink);
+  font-size: clamp(26px, 5vw, 46px); letter-spacing: -.02em; line-height: 1; color: var(--ink);
   text-align: left;
 }
 .hb-stat-lbl {
-  font-family: 'JetBrains Mono', 'Pretendard', monospace; font-size: 17px;
+  font-family: 'JetBrains Mono', 'Pretendard', monospace; font-size: clamp(11px, 1.6vw, 17px);
   letter-spacing: .1em; text-transform: uppercase; color: var(--mute); text-align: left;
 }
 .hb-meta { display: flex; flex-wrap: wrap; row-gap: 16px; column-gap: 32px; }
 .hb-meta-item { display: flex; flex-direction: column; gap: 6px; text-decoration: none; }
 .hb-meta-lbl {
-  font-family: 'JetBrains Mono', 'Pretendard', monospace; font-size: 13px;
+  font-family: 'JetBrains Mono', 'Pretendard', monospace; font-size: clamp(10px, 1.3vw, 13px);
   letter-spacing: .1em; text-transform: uppercase; color: var(--mute); text-align: left;
 }
-.hb-meta-val { font-size: 19px; font-weight: 500; color: var(--ink); }
+.hb-meta-val { font-size: clamp(14px, 2vw, 19px); font-weight: 500; color: var(--ink); }
 .hb-avail { display: inline-flex; align-items: center; gap: 7px; }
 .hb-avail::before {
   content: ""; width: 6px; height: 6px; border-radius: 50%;
@@ -263,10 +271,10 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
   position: absolute; pointer-events: none; z-index: 3; color: var(--ink);
 }
 .sticker-circle {
-  top: 18%; left: 3%;
+  top: 12%; left: 3%;
   transform: rotate(10deg) translateY(var(--parallax-y, 0px));
 }
-.sticker-circle svg { width: 156px; height: 156px; }
+.sticker-circle svg { width: 140px; height: 140px; }
 .sticker-ring {
   transform-origin: 60px 60px;
   animation: spin-slow 20s linear infinite;
@@ -276,7 +284,7 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 /* .hero 기준으로 독립 배치 — hero-bottom과는 무관, 절대 그 안에 속하지 않음 */
 /* 왼쪽 스피너와 같은 top, 우측 가장자리에 배치되는 아웃라인 필 배지 */
 .hero-github-badge {
-  position: absolute; top: 18%; right: 3%; z-index: 4;
+  position: absolute; top: 10%; right: 3%; z-index: 4;
   display: inline-flex; align-items: center; gap: 10px;
   font-family: 'JetBrains Mono', 'Pretendard', monospace; font-size: 13px;
   letter-spacing: .1em; text-transform: uppercase;
@@ -286,7 +294,7 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
   text-decoration: none; color: var(--ink);
   transition: transform .25s cubic-bezier(.2,.7,0,1), background .2s, color .2s;
 }
-.hero-github-badge:hover { transform: scale(1.05); background: var(--ink); color: var(--white); }
+.hero-github-badge:hover { background: var(--ink); color: var(--white); }
 .hero-github-badge .sticker-dot { background: #3ddc97; }
 .sticker-dot {
   width: 7px; height: 7px; border-radius: 50%;
@@ -383,7 +391,7 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 
 /* ─── projects header ─── */
 .projects-header {
-  padding: 48px 16px 40px;
+  padding: 90px 16px 40px;
   align-items: start;
   background: var(--white);
   position: relative; z-index: 2;
@@ -556,8 +564,8 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 }
 
 /* ─── about ─── */
-.about { padding: 32px 0 80px; position: relative; z-index: 2; background: var(--white); }
-.about .grid { align-items: end; padding-top: 80px; }
+.about { padding: 90px 0 80px; position: relative; z-index: 2; background: var(--white); }
+.about .grid { align-items: end; }
 .about-heading { grid-column: 1 / span 12; text-align: left; margin-bottom: 40px; }
 .about .about-text {
   grid-column: 1 / span 7;
@@ -726,10 +734,19 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
 
 /* ─── tablet  ≤ 900px ─── */
 @media (max-width: 900px) {
-
+  .hero{
+    min-height: calc(100vh - 280px);
+  }
+      
   /* hero */
   .hb-stats { flex-wrap: wrap; }
   .hb-meta  { flex-wrap: wrap; gap: 12px 20px; }
+  .hero-github-badge { top: 48px; right: 16px; padding: 10px 18px; font-size: 12px; }
+  .sticker-circle {
+    top: 13%; left: 2%;
+    transform: rotate(10deg) translateY(var(--parallax-y, 0px));
+  }
+  .sticker-circle svg { width: 110px; height: 110px; }
 
   /* overview */
 
@@ -749,6 +766,17 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
   .ph-desc { grid-column: 1 / span 10; }
 }
 
+/* ─── 900px 경계에서 about 텍스트/포트레이트 열 배분이 갑자기 벌어지는 것 방지 ─── */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .about .about-text     { grid-column: 1 / span 8; }
+  .about .about-portrait { grid-column: 9 / span 3; }
+}
+
+/* ─── narrow  ≤ 860px (히어로 장식 스티커가 키워드 줄과 겹치는 폭) ─── */
+@media (max-width: 860px) {
+  .sticker-circle { display: none; }
+}
+
 /* ─── mobile  ≤ 600px ─── */
 @media (max-width: 600px) {
   :root { --gut: 8px; }
@@ -758,28 +786,27 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
   .ruler-top { padding: 0 12px; }
   .ruler-bot { padding: 0 12px; font-size: 11px; }
   .ruler-top .dots   { display: none; }
-  .ruler-top .center { font-size: 12px; }
+  .ruler-top .center {
+    position: static; transform: none;
+    font-size: 12px; margin-right: auto; padding-left: 12px;
+  }
+  .ruler-top .right { font-size: 11px; }
 
   /* drawer */
   .drawer { width: 100%; }
 
   /* hero */
   .hero { min-height: 80vh; padding: 80px 14px 90px; }
-  .hero h1 { font-size: clamp(40px, 15vw, 58px); }
-  .hero-intro { font-size: 14px; }
-  .hero .head .lead { font-size: 16px; margin-top: 16px; max-width: 100%; word-break: keep-all; }
+  .hero .head .lead { margin-top: 16px; max-width: 100%; word-break: keep-all; }
   .lead-br { display: none; }
   .hero-bottom {
-    position: static; margin-top: 24px;
     flex-direction: column; align-items: flex-start; gap: 16px;
-    left: auto; right: auto; bottom: auto;
   }
   .hero-github-badge { top: 48px; right: 14px; padding: 9px 16px; font-size: 11px; }
   .hb-stats { flex-wrap: wrap; }
   .hb-stat  { padding-right: 20px; margin-right: 20px; }
   .hb-meta  { flex-wrap: wrap; gap: 12px 24px; }
   .sticker-circle {
-    top: 78px; left: 40px;
     transform: rotate(12deg) translateY(var(--parallax-y, 0px));
   }
   .sticker-circle svg { width: 92px; height: 92px; }
@@ -793,6 +820,7 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
   .sec-title { padding: 40px 14px 20px; }
 
   /* about */
+  .about { padding-top: 80px; }
   .about .about-text { grid-column: 1 / span 12; }
   .about .about-portrait {
     grid-column: 4 / span 6; grid-row: 2;
@@ -838,7 +866,7 @@ body.dark .ruler-top, body.dark .ruler-bot { background: #111; }
   .contact .right a { font-size: 13px; }
 
   /* projects */
-  .projects-header { padding: 28px 14px 20px; }
+  .projects-header { padding: 80px 14px 20px; }
   .proj-grid {
     grid-template-columns: 1fr;
     padding: 20px 14px 60px;

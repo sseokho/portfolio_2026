@@ -50,41 +50,43 @@ export default function Hero() {
   return (
     <section className="hero" id="hero" ref={heroRef}>
 
-      {/* 키워드 인트로 */}
-      <div className="hero-intro" ref={introRef}>
-        <div className="hero-kw">
-          {KEYWORDS.map((kw, i) => (
-            <span
-              key={kw}
-              className="kw"
-              style={{ '--d': `${i * K_SPD + 80}ms` } as React.CSSProperties}
-            >
-              {kw}{i < KEYWORDS.length - 1 && <span className="sep"> · </span>}
-            </span>
-          ))}
+      <div className="hero-center">
+        {/* 키워드 인트로 */}
+        <div className="hero-intro" ref={introRef}>
+          <div className="hero-kw">
+            {KEYWORDS.map((kw, i) => (
+              <span
+                key={kw}
+                className="kw"
+                style={{ '--d': `${i * K_SPD + 80}ms` } as React.CSSProperties}
+              >
+                {kw}{i < KEYWORDS.length - 1 && <span className="sep"> · </span>}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* 타이틀: 타이핑 인터렉션 */}
-      <div className="head">
-        <h1>
-          <span className="line">
-            <span className="h1-strong">
-              {TITLE.slice(0, titleLen)}
-              {titleLen < TITLE.length && <span className="type-caret" />}
+        {/* 타이틀: 타이핑 인터렉션 */}
+        <div className="head">
+          <h1>
+            <span className="line">
+              <span className="h1-strong">
+                {TITLE.slice(0, titleLen)}
+                {titleLen < TITLE.length && <span className="type-caret" />}
+              </span>
             </span>
-          </span>
-          <span className="line">
-            <span className="h1-outline">
-              {SUB.slice(0, subLen)}
-              {titleLen >= TITLE.length && subLen < SUB.length && <span className="type-caret" />}
+            <span className="line">
+              <span className="h1-outline">
+                {SUB.slice(0, subLen)}
+                {titleLen >= TITLE.length && subLen < SUB.length && <span className="type-caret" />}
+              </span>
             </span>
-          </span>
-        </h1>
-        <p className={`lead${subLen >= SUB.length ? ' in' : ''}`}>
-          사용자가 마주하는 화면을 만드는 일에 진심인 손석호입니다. <br className="lead-br" />
-          더 넓은 세상에서 다양한 경험과 도전을 쌓아가고 싶습니다.
-        </p>
+          </h1>
+          <p className={`lead${subLen >= SUB.length ? ' in' : ''}`}>
+            사용자가 마주하는 화면을 만드는 일에 진심인 손석호입니다. <br className="lead-br" />
+            더 넓은 세상에서 다양한 경험과 도전을 쌓아가고 싶습니다.
+          </p>
+        </div>
       </div>
 
       {/* GitHub 배지: hero-bottom과 완전히 분리된 독립 요소 */}

@@ -195,6 +195,6 @@ export interface CertItem {
 export const CONTACT_LINKS = [
   { label: 'Email',    href: 'mailto:tjrgh538@naver.com' },
   { label: 'GitHub',   href: 'https://github.com/sseokho' },
-  { label: '경력기술서', href: '/etc/career.pdf' },
+  { label: 'Career Summary', href: '/etc/career.pdf' },
   { label: 'Resume',   href: '/etc/resume.pdf' },
 ];

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
 import { useReveal } from './UseReveal';
 import { PROJECTS, type Project } from './Data';
 
@@ -19,41 +20,17 @@ const TABS: { id: Tab; label: string; desc: string }[] = [
   },
 ];
 
-function ContributionBar({ value }: { value: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [filled, setFilled] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setFilled(true); },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div className="contrib" ref={ref}>
-      <div className="contrib-header">
-        <span className="contrib-label">기여도</span>
-        <span className="contrib-value">{value}%</span>
-      </div>
-      <div className="contrib-track">
-        <div className="contrib-fill" style={{ width: filled ? `${value}%` : '0%' }} />
-      </div>
-    </div>
-  );
+function splitTitle(title: string): { main: string; sub?: string } {
+  const m = title.match(/^(.*?)\s[-—]\s(.*)$/);
+  return m ? { main: m[1], sub: m[2] } : { main: title };
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { main, sub } = splitTitle(project.title);
   return (
-    <a
+    <Link
       className="proj-card reveal"
-      href={project.href ?? '#'}
-      target="_blank"
-      rel="noreferrer"
+      href={`/projects/${project.id}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className="thumb">
@@ -61,11 +38,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <span className="arr">↗</span>
       </div>
       <div className="info">
-        <h3 className="title">{project.title}</h3>
-        <p className="desc">{project.desc}</p>
+        <h3 className="title">{main}</h3>
+        {sub && <p className="desc">{sub}</p>}
       </div>
-      <ContributionBar value={project.contribution} />
-    </a>
+    </Link>
   );
 }
 

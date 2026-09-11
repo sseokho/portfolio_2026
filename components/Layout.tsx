@@ -10,6 +10,10 @@ const NAV = [
   { href: '/about',    label: 'ABOUT',    title: 'ABOUT'    },
 ];
 
+function matchNav(pathname: string) {
+  return NAV.find(n => n.href !== '/' && pathname.startsWith(n.href)) ?? NAV.find(n => n.href === pathname);
+}
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [clock, setClock]       = useState('');
@@ -47,7 +51,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (isFirst.current) { isFirst.current = false; return; }
-    const title = NAV.find(n => n.href === pathname)?.title ?? '';
+    const title = matchNav(pathname)?.title ?? '';
     setTransTitle(title);
     setTrans('in');
     const t1 = setTimeout(() => setTrans('out'), 350);
@@ -71,7 +75,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <span /><span /><span />
         </button>
 
-        <span className="center">{NAV.find(n => n.href === pathname)?.title ?? 'SEOKHO SON'}</span>
+        <span className="center">{matchNav(pathname)?.title ?? 'SEOKHO SON'}</span>
 
         <div className="right">
           <span>{clock}</span>
@@ -81,7 +85,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className={`drawer${open ? ' open' : ''}`}>
         <nav>
           {NAV.map(({ href, label }) => (
-            <Link key={href} href={href} className={pathname === href ? 'on' : ''} onClick={() => setOpen(false)}>
+            <Link key={href} href={href} className={matchNav(pathname)?.href === href ? 'on' : ''} onClick={() => setOpen(false)}>
               {label}
             </Link>
           ))}

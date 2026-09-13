@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { useReveal } from './UseReveal';
 import type { Project } from './Data';
 
+function mainTitle(title: string): string {
+  return title.split(/\s[-—]\s/)[0];
+}
+
 function highlightText(text: string, keywords: string[]): ReactNode {
   if (!keywords.length) return text;
   const escaped = [...keywords].sort((a, b) => b.length - a.length).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
@@ -25,19 +29,16 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
       {/* ─── 히어로 ─── */}
       <section className="pd-hero">
         <div className="grid">
-          <Link href="/projects" className="pd-back reveal">← BACK</Link>
-
-          <h1 className="pd-title reveal">{project.title}</h1>
+          <Link href={`/projects?tab=${project.type}`} className="pd-back reveal">← BACK</Link>
         </div>
       </section>
 
       {/* ─── 1. 프로젝트 소개 ─── */}
       <section className="pd-intro-sec">
         <div className="grid">
-          <h2 className="reveal">
-            <span className="en-tag">INTRO</span>
-            프로젝트 소개
-          </h2>
+          <h1 className="pd-title reveal">{mainTitle(project.title)}</h1>
+        </div>
+        <div className="grid pd-box">
           {introParagraphs.map((p, i) => (
             <p key={i} className="pd-intro reveal">{highlightText(p, project.descKeywords)}</p>
           ))}
@@ -47,11 +48,9 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
       {/* ─── 2. 프로젝트 정보 ─── */}
       <section className="pd-info">
         <div className="grid">
-          <h2 className="reveal">
-            <span className="en-tag">INFO</span>
-            프로젝트 정보
-          </h2>
-
+          <h2 className="reveal">프로젝트 정보</h2>
+        </div>
+        <div className="grid pd-box">
           <dl className="pd-infolist reveal">
             <div className="pd-info-row">
               <dt>기간</dt>
@@ -87,28 +86,26 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
       </section>
 
       {/* ─── 3. 프로젝트 관련 자료 ─── */}
-      <section className="pd-case">
-        <div className="grid">
-          <h2 className="reveal">
-            <span className="en-tag">MATERIALS</span>
-            프로젝트 관련 자료
-          </h2>
-          <p className="pd-intro reveal">
-            이 프로젝트를 만들면서 겪은 문제와 해결 과정을 아래 글에 정리했습니다.
-          </p>
-          <div className="pd-devlog-list reveal">
-            {(project.resources?.length ? project.resources : [{ label: '정리 예정입니다' }]).map(r => (
-              r.href ? (
-                <a key={r.label} className="pd-devlog" href={r.href} target="_blank" rel="noreferrer">
-                  {r.label} <span>↗</span>
-                </a>
-              ) : (
-                <span key={r.label} className="pd-devlog disabled">{r.label}</span>
-              )
-            ))}
+      {project.type === 'personal' && (
+        <section className="pd-case">
+          <div className="grid">
+            <h2 className="reveal">프로젝트 관련 자료</h2>
           </div>
-        </div>
-      </section>
+          <div className="grid pd-box">
+            <div className="pd-devlog-list reveal">
+              {(project.resources?.length ? project.resources : [{ label: '정리 예정입니다' }]).map(r => (
+                r.href ? (
+                  <a key={r.label} className="pd-devlog" href={r.href} target="_blank" rel="noreferrer">
+                    {r.label} <span>↗</span>
+                  </a>
+                ) : (
+                  <span key={r.label} className="pd-devlog disabled">{r.label}</span>
+                )
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
     </div>
   );

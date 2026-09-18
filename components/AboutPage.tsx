@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { SKILLS, EXPERIENCE, CONTACT_LINKS } from './Data';
+import { SKILLS, CONTACT_LINKS } from './Data';
 import { useParallax } from './useParallax';
 
 function Reveal({ text, active }: { text: string; active: boolean }) {
@@ -13,12 +13,10 @@ export default function AboutPage() {
   const portraitImgRef = useParallax<HTMLImageElement>(.06);
   const introTitleRef   = useRef<HTMLHeadingElement>(null);
   const matrixTitleRef  = useRef<HTMLHeadingElement>(null);
-  const expTitleRef     = useRef<HTMLHeadingElement>(null);
   const contactTitleRef = useRef<HTMLHeadingElement>(null);
   const [barsVisible, setBarsVisible] = useState(false);
   const [introIn,     setIntroIn]     = useState(false);
   const [matrixIn,    setMatrixIn]    = useState(false);
-  const [expIn,       setExpIn]       = useState(false);
   const [contactIn,   setContactIn]   = useState(false);
 
 
@@ -37,7 +35,6 @@ export default function AboutPage() {
     const pairs: [React.RefObject<HTMLElement | null>, (v: boolean) => void][] = [
       [introTitleRef,   setIntroIn],
       [matrixTitleRef,  setMatrixIn],
-      [expTitleRef,     setExpIn],
       [contactTitleRef, setContactIn],
     ];
     const observers = pairs.map(([ref, set]) => {
@@ -58,7 +55,6 @@ export default function AboutPage() {
       <section className="about">
         <div className="grid">
           <h2 className="about-heading" ref={introTitleRef}>
-            <span className="en-tag">INTRO</span>
             <Reveal text="소개" active={introIn} />
           </h2>
           <div className="about-text">
@@ -89,7 +85,6 @@ export default function AboutPage() {
       <section className="matrix">
         <div className="grid">
           <h2 ref={matrixTitleRef}>
-            <span className="en-tag">STACK MATRIX</span>
             <Reveal text="기술스택" active={matrixIn} />
           </h2>
           <p className="lede">
@@ -123,34 +118,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── 경력 ─── */}
-      <section className="exp">
-        <div className="grid">
-          <h2 ref={expTitleRef}>
-            <span className="en-tag">CAREER HISTORY</span>
-            <Reveal text="경력 요약" active={expIn} />
-          </h2>
-          <div className="list">
-            {EXPERIENCE.map((item, i) => (
-              <div className="item" key={i}>
-                <span className="yr">{item.period}</span>
-                <div className="role">
-                  <span>{item.company}</span>
-                  {item.role}
-                </div>
-                <span className="place">{item.location}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ─── 연락처 ─── */}
       <section className="contact" id="contact">
         <div className="grid">
           <h2 ref={contactTitleRef}>
             <span className={`rl${contactIn ? ' on' : ''}`}>CONTACT</span><br />
-            <span className={`rl blue${contactIn ? ' on' : ''}`} style={{ transitionDelay: contactIn ? '.1s' : '0s' }}>ME.</span>
+            <span className={`rl blue${contactIn ? ' on' : ''}`} style={{ transitionDelay: contactIn ? '.1s' : '0s' }}>ME</span>
           </h2>
 
           <div className="right">

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useReveal } from './UseReveal';
 import { PROJECTS, type Project } from './Data';
 
@@ -46,7 +47,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsPage() {
-  const [tab, setTab] = useState<Tab>('personal');
+  const searchParams = useSearchParams();
+  const initialTab: Tab = searchParams.get('tab') === 'work' ? 'work' : 'personal';
+  const [tab, setTab] = useState<Tab>(initialTab);
   const ref = useReveal(tab);
 
   const filtered = PROJECTS.filter(p => p.type === tab);

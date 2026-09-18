@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const NAV = [
   { href: '/',         label: 'HOME',     title: 'HOME'     },
@@ -19,9 +19,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [clock, setClock]       = useState('');
   const [progress, setProgress] = useState(0);
   const [open, setOpen]         = useState(false);
-  const [trans, setTrans]       = useState<'idle' | 'in' | 'out'>('idle');
-  const [transTitle, setTransTitle] = useState('');
-  const isFirst   = useRef(true);
   const [prevPathname, setPrevPathname] = useState(pathname);
 
   if (pathname !== prevPathname) {
@@ -48,16 +45,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  useEffect(() => {
-    if (isFirst.current) { isFirst.current = false; return; }
-    const title = matchNav(pathname)?.title ?? '';
-    setTransTitle(title);
-    setTrans('in');
-    const t1 = setTimeout(() => setTrans('out'), 350);
-    const t2 = setTimeout(() => setTrans('idle'), 520);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, [pathname]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
@@ -101,12 +88,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="progress" aria-hidden>
         <i style={{ width: `${progress * 100}%` }} />
       </div>
-
-      {trans !== 'idle' && (
-        <div className={`page-trans ${trans}`} aria-hidden>
-          <span>{transTitle}</span>
-        </div>
-      )}
 
       <main>{children}</main>
 

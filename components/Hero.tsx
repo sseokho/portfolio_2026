@@ -113,10 +113,6 @@ export default function Hero() {
         </div>
         <div className="hb-meta">
           <div className="hb-meta-item">
-            <span className="hb-meta-lbl">Location</span>
-            <span className="hb-meta-val">서울, 대한민국</span>
-          </div>
-          <div className="hb-meta-item">
             <span className="hb-meta-lbl">Experience</span>
             <span className="hb-meta-val">웹 퍼블리셔 · 프론트엔드 개발자</span>
           </div>
@@ -138,8 +134,8 @@ export default function Hero() {
             <path id="cp" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>
           </defs>
           <g className="sticker-ring">
-            <text fontFamily="'JetBrains Mono',monospace" fontSize="10.5" letterSpacing="2.8" fill="currentColor" textAnchor="start">
-              <textPath href="#cp">THINK · MAKE · SHIP · 2026 · </textPath>
+            <text fontFamily="'Poppins',sans-serif" fontSize="10.5" letterSpacing="2.8" fill="currentColor" textAnchor="start">
+              <textPath href="#cp">THINK · MAKE · SHIP · 2026 · CODE · DESIGN · BUILD · SEOUL · </textPath>
             </text>
           </g>
           <text x="60" y="67" textAnchor="middle" fontSize="22" fill="currentColor">✦</text>
